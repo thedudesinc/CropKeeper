@@ -1,15 +1,15 @@
 <div class="w-3/12 mx-auto px-10">
   <h1 class="text-5xl font-extrabold dark:text-white py-20">Login</h1>
-  <form class="pb-10">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="pb-10">
     <div class="mb-6">
       <label for="email" class="block mb-2 text-md font-medium text-gray-900 dark:text-white">Email</label>
-      <input type="email" id="email"
+      <input formControlName="email" type="email" id="email"
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         required>
     </div>
     <div class="mb-6">
       <label for="password" class="block mb-2 text-md font-medium text-gray-900 dark:text-white">Password</label>
-      <input type="password" id="password"
+      <input formControlName="password" type="password" id="password"
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         required>
     </div>
