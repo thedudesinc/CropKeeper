@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ControlsOf } from 'src/app/helpers/helper.types';
+import { LoadingService } from 'src/app/services/loading.service';
 import { UserInput } from 'src/app/services/models/user.model';
 import { UserService } from 'src/app/services/user.service';
 
@@ -21,11 +22,12 @@ export class SignupComponent {
     allowSiteNotifications: new FormControl(false, { nonNullable: true, validators: [Validators.required] }),
   });
 
-  constructor(private userservice: UserService) { }
+  constructor(private userservice: UserService, private loadingService: LoadingService) { }
 
   onSubmit(): void {
+    this.loadingService.isLoadingVisible.next(true);
     this.userservice.create(this.userForm.getRawValue()).subscribe((response) => {
-      console.log(response);
+      this.loadingService.isLoadingVisible.next(false);
     });
   }
 }
