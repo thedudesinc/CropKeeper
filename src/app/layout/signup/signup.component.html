@@ -6,24 +6,62 @@
       <input formControlName="displayName" type="text" id="displayName"
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         required>
+      <div *ngIf="displayName?.invalid && (displayName?.dirty || displayName?.touched)" class="text-red-500">
+        <div *ngIf="displayName?.errors?.['required']">
+          Name is required.
+        </div>
+        <div *ngIf="displayName?.errors?.['minlength']">
+          Name must be at least 2 characters long.
+        </div>
+        <div *ngIf="displayName?.errors?.['maxlength']">
+          Name must be less than 50 characters long.
+        </div>
+      </div>
     </div>
     <div class="mb-6">
       <label for="email" class="block mb-2 text-md font-medium text-gray-900 dark:text-white">Email address</label>
       <input formControlName="email" type="email" id="email"
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         required>
+      <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="text-red-500">
+        <div *ngIf="email?.errors?.['required']">
+          Email is required.
+        </div>
+        <div *ngIf="email?.errors?.['email']">
+          Valid email is required.
+        </div>
+      </div>
     </div>
     <div class="mb-6">
       <label for="zip" class="block mb-2 text-md font-medium text-gray-900 dark:text-white">Zip Code</label>
       <input formControlName="zip" type="text" id="zip"
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         required>
+      <div *ngIf="zip?.invalid && (zip?.dirty || zip?.touched)" class="text-red-500">
+        <div *ngIf="zip?.errors?.['required']">
+          Zip is required.
+        </div>
+        <div *ngIf="zip?.errors?.['pattern']">
+          Valid zip code is required.
+        </div>
+      </div>
     </div>
     <div class="mb-6">
       <label for="password" class="block mb-2 text-md font-medium text-gray-900 dark:text-white">Password</label>
       <input formControlName="password" type="password" id="password"
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         placeholder="•••••••••" required>
+      <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="text-red-500">
+        <div *ngIf="password?.errors?.['required']">
+          Password is required.
+        </div>
+        <div *ngIf="password?.errors?.['minlength']">
+          Password must be at least 10 characters long.
+        </div>
+        <div *ngIf="password?.errors?.['maxlength']">
+          Password must be less than 100 characters long.
+        </div>
+      </div>
     </div>
     <div class="flex items-start mb-6">
       <div class="flex items-center h-5">
@@ -52,7 +90,7 @@
       <label for="remember" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">I agree with the <a
           href="#" class="text-blue-600 hover:underline dark:text-blue-500">terms and conditions</a>.</label>
     </div>
-    <button type="submit"
-      class="text-white bg-emerald-800 hover:bg-emerald-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md w-full sm:w-auto px-5 py-2.5 text-center dark:bg-emerald-800 dark:hover:bg-emerald-900 dark:focus:ring-blue-800">Submit</button>
+    <button type="submit" [disabled]="!userForm.valid"
+      class="text-white bg-emerald-800 hover:bg-emerald-900 focus:ring-4 focus:outline-none disabled:cursor-not-allowed focus:ring-blue-300 font-medium rounded-lg text-md w-full sm:w-auto px-5 py-2.5 text-center dark:bg-emerald-800 dark:hover:bg-emerald-900 dark:focus:ring-blue-800">Submit</button>
   </form>
 </div>

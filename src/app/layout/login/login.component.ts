@@ -14,9 +14,12 @@ import { LoginInput } from 'src/app/services/models/authentication.model';
 export class LoginComponent {
 
   loginForm: FormGroup<ControlsOf<LoginInput>> = new FormGroup<ControlsOf<LoginInput>>({
-    email: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
+    email: new FormControl('', { nonNullable: true, validators: [Validators.required, Validators.email] }),
     password: new FormControl('', { nonNullable: true, validators: [Validators.required] })
   });
+
+  get email() { return this.loginForm.get('email'); }
+  get password() { return this.loginForm.get('password'); }
 
   constructor(private authenticationService: AuthenticationService, private router: Router, private loadingService: LoadingService) { }
 
