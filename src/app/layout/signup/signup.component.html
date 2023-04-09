@@ -30,6 +30,9 @@
         <div *ngIf="email?.errors?.['email']">
           Valid email is required.
         </div>
+        <div *ngIf="email?.errors?.['emailAlreadyExists']">
+          Email is already in use.
+        </div>
       </div>
     </div>
     <div class="mb-6">
