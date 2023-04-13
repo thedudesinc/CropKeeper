@@ -35,7 +35,7 @@ export class SignupComponent {
     this.loadingService.isLoadingVisible.next(true);
     this.userService.create(this.userForm.getRawValue()).subscribe((response) => {
       this.loadingService.isLoadingVisible.next(false);
-      this.router.navigate(['/']);
+      this.router.navigate(['/login']);
     });
   }
 }

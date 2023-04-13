@@ -3,12 +3,12 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeaderComponent } from '../layout/header/header.component';
-import { RootComponent } from './root.component';
+import { PagesComponent } from './pages.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 const routes: Routes = [
   {
-    path: '', component: RootComponent, children: [
+    path: '', component: PagesComponent, children: [
       { path: '', component: DashboardComponent }
     ]
   }
@@ -17,7 +17,7 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     HeaderComponent,
-    RootComponent,
+    PagesComponent,
     DashboardComponent,
   ],
   imports: [

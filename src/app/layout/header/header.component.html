@@ -1,34 +1,22 @@
-<header>
+<header class="h-16">
   <nav class="fixed z-30 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700 py-3 px-4">
     <div class="flex justify-between items-center max-w-screen-2xl mx-auto">
       <div class="flex justify-start items-center">
         <a class="flex mr-14">
-          <img src="/assets/images/corn-icon.svg" class="mr-3 h-8" alt="FlowBite Logo" />
-          <span class="self-center hidden sm:flex text-2xl font-semibold whitespace-nowrap dark:text-white">Crop
+          <img src="/assets/images/corn-icon.svg" class="mr-3 h-8" alt="CropKeeper Logo" />
+          <span class="self-center hidden sm:flex text-3xl font-semibold whitespace-nowrap dark:text-white">Crop
             Keeper</span>
         </a>
         <!-- Desktop menu -->
         <div class="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1">
-          <ul class="flex flex-col mt-4 space-x-6 text-sm font-medium lg:flex-row xl:space-x-8 lg:mt-0">
+          <ul class="flex flex-col mt-4 space-x-6 text-lg font-medium lg:flex-row xl:space-x-8 lg:mt-0">
             <li>
               <a href="#" class="block text-gray-700 dark:text-gray-400 dark:hover:text-white"
                 aria-current="page">Home</a>
             </li>
             <li>
-              <a href="#"
-                class="block text-gray-700 hover:text-primary-700 dark:text-gray-400 dark:hover:text-white">Messages</a>
-            </li>
-            <li>
-              <a href="#"
-                class="block text-gray-700 hover:text-primary-700 dark:text-gray-400 dark:hover:text-white">Profile</a>
-            </li>
-            <li>
-              <a href="#"
-                class="block text-gray-700 hover:text-primary-700 dark:text-gray-400 dark:hover:text-white">Settings</a>
-            </li>
-            <li>
               <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar"
-                class="flex justify-between items-center py-2 pr-4 pl-3 w-full font-medium text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-primary-700 md:p-0 md:w-auto dark:text-gray-400 dark:hover:text-white dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent">Dropdown
+                class="flex justify-between items-center py-2 pr-4 pl-3 w-full font-medium text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-primary-700 md:p-0 md:w-auto dark:text-gray-400 dark:hover:text-white dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent">Gardens
                 <fa-icon [icon]="faAngleDown" class="ml-2"></fa-icon>
               </button>
               <!-- Dropdown menu -->
@@ -37,18 +25,30 @@
                 <ul class="py-1 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
                   <li>
                     <a href="#"
-                      class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Item 1</a>
+                      class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Garden
+                      1</a>
                   </li>
                   <li>
                     <a href="#"
-                      class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Item 2</a>
+                      class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Garden
+                      2</a>
                   </li>
                   <li>
                     <a href="#"
-                      class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Item 3</a>
+                      class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Create New
+                      Garden</a>
                   </li>
                 </ul>
               </div>
+            </li>
+            <li>
+              <a href="#"
+                class="block text-gray-700 hover:text-primary-700 dark:text-gray-400 dark:hover:text-white">Garden
+                Viewer</a>
+            </li>
+            <li>
+              <a href="#"
+                class="block text-gray-700 hover:text-primary-700 dark:text-gray-400 dark:hover:text-white">Almanac/Search</a>
             </li>
           </ul>
         </div>
@@ -110,8 +110,8 @@
           class="hidden z-50 my-4 w-56 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
           id="userMenuDropdown">
           <div class="py-3 px-4">
-            <span class="block text-sm font-semibold text-gray-900 dark:text-white">Neil Sims</span>
-            <span class="block text-sm font-light text-gray-500 truncate dark:text-gray-400">name@flowbite.com</span>
+            <span class="block text-sm font-semibold text-gray-900 dark:text-white">Username place holder</span>
+            <span class="block text-sm font-light text-gray-500 truncate dark:text-gray-400">name@email.com</span>
           </div>
           <ul class="py-1 font-light text-gray-500 dark:text-gray-400" aria-labelledby="userMenuDropdownButton">
             <li>
@@ -123,28 +123,6 @@
               <a href="#"
                 class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Account
                 settings</a>
-            </li>
-          </ul>
-          <ul class="py-1 font-light text-gray-500 dark:text-gray-400" aria-labelledby="userMenuDropdownButton">
-            <li>
-              <a href="#"
-                class="flex items-center py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"><svg
-                  class="mr-2 w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd"
-                    d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
-                    clip-rule="evenodd"></path>
-                </svg> My likes</a>
-            </li>
-            <li>
-              <a href="#"
-                class="flex items-center py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"><svg
-                  class="mr-2 w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z">
-                  </path>
-                </svg> Collections</a>
             </li>
           </ul>
           <ul class="py-1 font-light text-gray-500 dark:text-gray-400" aria-labelledby="dropdown">
