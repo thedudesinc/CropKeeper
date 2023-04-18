@@ -5,6 +5,6 @@ import { Observable, Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class LoadingService {
-  isLoadingVisible: Subject<boolean> = new Subject();
-  isLoadingVisible$: Observable<boolean> = this.isLoadingVisible.asObservable();
+  changeLoadingVisible: Subject<boolean> = new Subject();
+  isLoadingVisible$: Observable<boolean> = this.changeLoadingVisible.asObservable();
 }

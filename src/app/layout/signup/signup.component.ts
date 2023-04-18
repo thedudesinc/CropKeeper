@@ -32,9 +32,9 @@ export class SignupComponent {
   constructor(private userService: UserService, private loadingService: LoadingService, private router: Router) { }
 
   onSubmit(): void {
-    this.loadingService.isLoadingVisible.next(true);
+    this.loadingService.changeLoadingVisible.next(true);
     this.userService.create(this.userForm.getRawValue()).subscribe((response) => {
-      this.loadingService.isLoadingVisible.next(false);
+      this.loadingService.changeLoadingVisible.next(false);
       this.router.navigate(['/login']);
     });
   }
