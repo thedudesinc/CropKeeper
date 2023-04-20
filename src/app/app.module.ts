@@ -8,6 +8,7 @@ import { SignupComponent } from './layout/signup/signup.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoadingComponent } from './layout/loading/loading.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { GardenDesignerComponent } from './pages/garden-designer/garden-designer.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     LoginComponent,
     SignupComponent,
     LoadingComponent,
+    GardenDesignerComponent,
   ],
   imports: [
     BrowserModule,
