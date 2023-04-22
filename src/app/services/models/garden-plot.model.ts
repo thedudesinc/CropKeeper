@@ -1,3 +1,10 @@
+export interface GardenPlotPartialInput {
+  plotName: string;
+  zipCode: string;
+  notes: string | null;
+  fabricJson: string;
+}
+
 export interface GardenPlotInput {
   userId: string;
   fabricJson: string;
