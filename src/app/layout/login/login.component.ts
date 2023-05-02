@@ -24,23 +24,18 @@ export class LoginComponent {
   get email() { return this.loginForm.get('email'); }
   get password() { return this.loginForm.get('password'); }
 
-  constructor(private authenticationService: AuthenticationService, private router: Router, private loadingService: LoadingService) {
-
-  }
+  constructor(private authenticationService: AuthenticationService, private router: Router, private loadingService: LoadingService) {}
 
   onSubmit(): void {
     this.loadingService.changeLoadingVisible.next(true);
     this.authenticationService.authenticate(this.loginForm.getRawValue()).subscribe((isAuthenticated => {
       if (isAuthenticated) {
         this.showLoginError = false;
-        this.router.navigate(['/']);
+        this.router.navigate(['/']).then(() => this.loadingService.changeLoadingVisible.next(false));
       } else {
         this.showLoginError = true;
+        this.loadingService.changeLoadingVisible.next(false);
       }
-
-      this.loadingService.changeLoadingVisible.next(false);
     }))
-
-
   }
 }
