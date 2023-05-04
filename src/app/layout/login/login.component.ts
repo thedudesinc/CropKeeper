@@ -36,6 +36,6 @@ export class LoginComponent {
         this.showLoginError = true;
         this.loadingService.changeLoadingVisible.next(false);
       }
-    }))
+    }));
   }
 }
