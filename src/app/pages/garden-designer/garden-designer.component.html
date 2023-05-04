@@ -1,82 +1,81 @@
 <p *ngIf="gardenPlot$ | async"></p>
+<div class="relative w-full h-full">
+  <!--Upper Left Buttons-->
+  <div class="absolute inline-flex top-1.5 left-1.5 shadow-sm" role="group">
+    <a type="button"
+      class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-transparent border border-gray-900 rounded-l-lg hover:bg-gray-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700">
+      <fa-icon [icon]="faAnglesRight" class="ml-2 text-2xl"></fa-icon>
+      Plot Name - placeholder
+    </a>
+    <a type="button"
+      class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-transparent border-t border-b border-gray-900 hover:bg-gray-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700">
+      <fa-icon [icon]="faRotateLeft" class="ml-2 text-2xl"></fa-icon>
+    </a>
+    <a type="button"
+      class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-transparent border border-gray-900 rounded-r-md hover:bg-gray-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700">
+      <fa-icon [icon]="faRotateRight" class="ml-2 text-2xl"></fa-icon>
+    </a>
+  </div>
+  <!-- Right Side Tool Bar-->
+  <div class="absolute left-1.5 top-1/2 -translate-y-1/2 inline-flex flex-col rounded-md shadow-sm" role="group">
+    <button data-tooltip-target="tooltip-line" data-tooltip-placement="right" type="button"
+      class="mb-2 md:mb-0 text-white bg-gray-800 hover:bg-blue-800 focus:outline-none font-medium text-sm px-5 py-2.5 text-center dark:bg-gray-800 dark:hover:bg-gray-600 border-gray-600 border-b">
+      <fa-icon [icon]="faPencil" class="text-2xl"></fa-icon>
+    </button>
+    <div id="tooltip-line" role="tooltip"
+      class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+      Border Line
+      <div class="tooltip-arrow" data-popper-arrow></div>
+    </div>
 
-<!-- Modal toggle. This button will be replaced with logic that determines if a new garden is being created.-->
-<button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
-  class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-  type="button">
-  Toggle modal
-</button>
+    <button data-tooltip-target="tooltip-shapes" data-tooltip-placement="right" type="button"
+      class="mb-2 md:mb-0 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none font-medium text-sm px-5 py-2.5 text-center dark:bg-gray-800 dark:hover:bg-gray-600 border-gray-600 border-b">
+      <fa-icon [icon]="faShapes" class="text-2xl"></fa-icon>
+    </button>
+    <div id="tooltip-shapes" role="tooltip"
+      class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+      Border Shapes
+      <div class="tooltip-arrow" data-popper-arrow></div>
+    </div>
 
-<!-- Main modal. Change id -->
-<div id="authentication-modal" tabindex="-1" aria-hidden="true"
-  class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
-  <div class="relative w-full max-w-md max-h-full">
-    <!-- Modal content -->
-    <div class="relative bg-white rounded-lg shadow dark:bg-gray-800">
-      <!-- will remove button after form is functional -->
-      <button type="button"
-        class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
-        data-modal-hide="authentication-modal">
-        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-          xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd"
-            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-            clip-rule="evenodd"></path>
-        </svg>
-        <span class="sr-only">Close modal</span>
-      </button>
-      <div class="px-6 py-6 lg:px-8">
-        <h3 class="mb-8 text-xl font-medium text-gray-900 dark:text-white">Create New Garden</h3>
-        <form [formGroup]="newGardenForm" (ngSubmit)="onSubmit()" class="space-y-6" action="#">
-          <div>
-            <label for="plotName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
-            <input formControlName="plotName" type="text" name="plotName" id="plotName"
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              required>
-          </div>
-          <div *ngIf="plotName?.invalid && (plotName?.dirty || plotName?.touched)" class="text-red-500">
-            <div *ngIf="plotName?.errors?.['required']">
-              Name is required.
-            </div>
-            <div *ngIf="plotName?.errors?.['minlength']">
-              Name must be at least 2 characters long.
-            </div>
-            <div *ngIf="plotName?.errors?.['maxlength']">
-              Name must be less than 50 characters long.
-            </div>
-          </div>
-          <div>
-            <label for="zip-code" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Zip
-              Code</label>
-            <input formControlName="zipCode" type="text" name="zip-code" id="zip-code"
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              required>
-          </div>
-          <div *ngIf="zipCode?.invalid && (zipCode?.dirty || zipCode?.touched)" class="text-red-500">
-            <div *ngIf="zipCode?.errors?.['required']">
-              Zip is required.
-            </div>
-            <div *ngIf="zipCode?.errors?.['pattern']">
-              Valid zip code is required.
-            </div>
-          </div>
-          <div>
-            <p class="block mb-2 text-sm font-normal text-gray-400">The zip code input will provide the
-              hardiness-zone and frost dates.</p>
-          </div>
-          <div>
-            <label for="notes" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Notes</label>
-            <textarea formControlName="notes" id="notes" rows="3"
-              class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Notes..."></textarea>
-          </div>
-          <div>
-            <input formControlName="fabricJson" type="hidden" name="fabricJson" id="fabricJson">
-          </div>
-          <button type="submit" [disabled]="!newGardenForm.valid"
-            class="w-full text-white bg-emerald-800 hover:bg-emerald-900 focus:ring-4 focus:outline-none disabled:cursor-not-allowed focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-emerald-800 dark:hover:bg-emerald-900 dark:focus:ring-blue-800">Submit</button>
-        </form>
-      </div>
+    <button data-tooltip-target="tooltip-eraser" data-tooltip-placement="right" type="button"
+      class="mb-2 md:mb-0 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none font-medium text-sm px-5 py-2.5 text-center dark:bg-gray-800 dark:hover:bg-gray-600 border-gray-600 border-b">
+      <fa-icon [icon]="faEraser" class="text-2xl"></fa-icon>
+    </button>
+    <div id="tooltip-eraser" role="tooltip"
+      class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+      Eraser
+      <div class="tooltip-arrow" data-popper-arrow></div>
+    </div>
+
+    <button data-tooltip-target="tooltip-row" data-tooltip-placement="right" type="button"
+      class="mb-2 md:mb-0 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none font-medium text-sm px-5 py-2.5 text-center dark:bg-gray-800 dark:hover:bg-gray-600 border-gray-600 border-b">
+      <fa-icon [icon]="faDotRow" class="text-2xl"></fa-icon>
+    </button>
+    <div id="tooltip-row" role="tooltip"
+      class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+      Row Crop
+      <div class="tooltip-arrow" data-popper-arrow></div>
+    </div>
+
+    <button data-tooltip-target="tooltip-single" data-tooltip-placement="right" type="button"
+      class="mb-2 md:mb-0 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none font-medium text-sm px-5 py-2.5 text-center dark:bg-gray-800 dark:hover:bg-gray-600 border-gray-600 border-b">
+      <fa-icon [icon]="faSeedling" class="text-2xl"></fa-icon>
+    </button>
+    <div id="tooltip-single" role="tooltip"
+      class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+      Single Crop
+      <div class="tooltip-arrow" data-popper-arrow></div>
+    </div>
+
+    <button data-tooltip-target="tooltip-texture" data-tooltip-placement="right" type="button"
+      class="mb-2 md:mb-0 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none font-medium text-sm px-5 py-2.5 text-center dark:bg-gray-800 dark:hover:bg-gray-600">
+      <fa-icon [icon]="faBrush" class="text-2xl"></fa-icon>
+    </button>
+    <div id="tooltip-texture" role="tooltip"
+      class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+      Ground Texture
+      <div class="tooltip-arrow" data-popper-arrow></div>
     </div>
   </div>
 </div>

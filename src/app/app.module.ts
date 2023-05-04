@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LoadingComponent } from './layout/loading/loading.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { GardenDesignerComponent } from './pages/garden-designer/garden-designer.component';
+import { GardenDesignerModalComponent } from './pages/garden-designer-modal/garden-designer-modal.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { GardenDesignerComponent } from './pages/garden-designer/garden-designer
     SignupComponent,
     LoadingComponent,
     GardenDesignerComponent,
+    GardenDesignerModalComponent,
   ],
   imports: [
     BrowserModule,
