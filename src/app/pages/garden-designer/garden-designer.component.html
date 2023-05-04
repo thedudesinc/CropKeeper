@@ -1,7 +1,7 @@
-<p *ngIf="gardenPlot$ | async"></p>
-<div class="relative w-full h-full">
+<div class="relative h-full">
+  <p *ngIf="gardenPlot$ | async"></p>
   <!--Upper Left Buttons-->
-  <div class="absolute inline-flex top-1.5 left-1.5 shadow-sm" role="group">
+  <div class="absolute top-1.5 left-1.5 shadow-sm" role="group">
     <a type="button"
       class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-transparent border border-gray-900 rounded-l-lg hover:bg-gray-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700">
       <fa-icon [icon]="faAnglesRight" class="ml-2 text-2xl"></fa-icon>
