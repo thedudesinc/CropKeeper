@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { faAnglesRight, faBrush, faEllipsisVertical, faEraser, faPencil, faRotateLeft, faRotateRight, faSeedling, faShapes } from '@fortawesome/free-solid-svg-icons';
+import { faCircle, faSquareFull } from '@fortawesome/free-regular-svg-icons';
+import { faAnglesRight, faBrush, faEllipsisVertical, faEraser, faPencil, faRotateLeft, faRotateRight, faSeedling } from '@fortawesome/free-solid-svg-icons';
 import { Observable, map, of } from 'rxjs';
 import { GardenPlotService } from 'src/app/services/garden-plot.service';
 import { LoadingService } from 'src/app/services/loading.service';
@@ -18,7 +19,8 @@ export class GardenDesignerComponent {
   faAnglesRight = faAnglesRight;
   faPencil = faPencil;
   faEraser = faEraser;
-  faShapes = faShapes;
+  faSquare = faSquareFull;
+  faCircle = faCircle;
   faDotRow = faEllipsisVertical;
   faSeedling = faSeedling;
   faBrush = faBrush;
