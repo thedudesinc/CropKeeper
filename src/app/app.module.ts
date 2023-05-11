@@ -8,8 +8,6 @@ import { SignupComponent } from './layout/signup/signup.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoadingComponent } from './layout/loading/loading.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { GardenDesignerComponent } from './pages/garden-designer/garden-designer.component';
-import { GardenDesignerModalComponent } from './pages/garden-designer-modal/garden-designer-modal.component';
 import { GlobalInterceptor } from './shared/global.interceptor';
 
 @NgModule({
@@ -18,8 +16,6 @@ import { GlobalInterceptor } from './shared/global.interceptor';
     LoginComponent,
     SignupComponent,
     LoadingComponent,
-    GardenDesignerComponent,
-    GardenDesignerModalComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,11 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ROUTES, RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeaderComponent } from '../layout/header/header.component';
 import { PagesComponent } from './pages.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { GardenDesignerComponent } from './garden-designer/garden-designer.component';
+import { GardenDesignerToolbarComponent } from './garden-designer/components/garden-designer-toolbar/garden-designer-toolbar.component';
+import { GardenDesignerTitlebarComponent } from './garden-designer/components/garden-designer-titlebar/garden-designer-titlebar.component';
+import { GardenDesignerModalComponent } from './garden-designer/components/garden-designer-modal/garden-designer-modal.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -22,11 +26,16 @@ const routes: Routes = [
     HeaderComponent,
     PagesComponent,
     DashboardComponent,
+    GardenDesignerComponent,
+    GardenDesignerToolbarComponent,
+    GardenDesignerTitlebarComponent,
+    GardenDesignerModalComponent,
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    FontAwesomeModule
+    FontAwesomeModule,
+    ReactiveFormsModule,
   ]
 })
 export class PagesModule { }

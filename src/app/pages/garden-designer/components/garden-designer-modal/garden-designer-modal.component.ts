@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ControlsOf } from '../../helpers/helper.types';
-import { GardenPlotPartialInput } from '../../services/models/garden-plot.model';
-import { GardenPlotService } from '../../services/garden-plot.service';
-import { LoadingService } from '../../services/loading.service';
+import { ControlsOf } from '../../../../helpers/helper.types';
+import { GardenPlotPartialInput } from '../../../../services/models/garden-plot.model';
+import { GardenPlotService } from '../../../../services/garden-plot.service';
+import { LoadingService } from '../../../../services/loading.service';
 
 @Component({
   selector: 'app-garden-designer-modal',
@@ -11,6 +11,8 @@ import { LoadingService } from '../../services/loading.service';
   styleUrls: ['./garden-designer-modal.component.scss']
 })
 export class GardenDesignerModalComponent {
+  @Input()
+  isVisible = false;
 
   gardenPropertiesForm: FormGroup<ControlsOf<GardenPlotPartialInput>> = new FormGroup<ControlsOf<GardenPlotPartialInput>>({
     plotName: new FormControl('', { nonNullable: true, validators: [Validators.required, Validators.minLength(2), Validators.maxLength(50)] }),
@@ -28,8 +30,9 @@ export class GardenDesignerModalComponent {
 
   onSubmit(): void {
     this.loadingService.changeLoadingVisible.next(true);
-    this.gardenPlotService.Create(this.gardenPropertiesForm.getRawValue()).subscribe((response) => {
+    this.gardenPlotService.create(this.gardenPropertiesForm.getRawValue()).subscribe((response) => {
       this.loadingService.changeLoadingVisible.next(false);
+      this.isVisible = false;
     });
   }
 }

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { tap } from 'rxjs';
 import { ControlsOf } from 'src/app/helpers/helper.types';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { LoadingService } from 'src/app/services/loading.service';
@@ -24,7 +23,7 @@ export class LoginComponent {
   get email() { return this.loginForm.get('email'); }
   get password() { return this.loginForm.get('password'); }
 
-  constructor(private authenticationService: AuthenticationService, private router: Router, private loadingService: LoadingService) {}
+  constructor(private authenticationService: AuthenticationService, private router: Router, private loadingService: LoadingService) { }
 
   onSubmit(): void {
     this.loadingService.changeLoadingVisible.next(true);
