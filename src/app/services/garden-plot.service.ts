@@ -19,4 +19,8 @@ export class GardenPlotService {
   create(gardenPlot: GardenPlotPartialInput): Observable<GardenPlotOutput> {
     return this.http.post<GardenPlotOutput>(this.baseUrl, gardenPlot);
   }
+
+  update(gardenPlot: GardenPlotPartialInput): Observable<GardenPlotOutput> {
+    return this.http.put<GardenPlotOutput>(this.baseUrl + '/' + gardenPlot.id, gardenPlot);
+  }
 }

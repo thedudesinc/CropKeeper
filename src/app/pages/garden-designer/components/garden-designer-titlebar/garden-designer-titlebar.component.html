@@ -1,8 +1,8 @@
 <div class="absolute top-1.5 left-1.5 shadow-sm" role="group">
-  <button type="button"
+  <button (click)="onTitleClick()" type="button"
     class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 border-gray-600 border-r-2 hover:bg-gray-900 hover:text-white focus:outline-none dark:bg-gray-800 dark:text-white dark:hover:text-white dark:hover:bg-gray-700">
     <fa-icon [icon]="faAnglesRight" class="mx-2 text-2xl"></fa-icon>
-    Untitled
+    {{title ?? 'Untitled'}}
   </button>
   <button type="button"
     class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 border-gray-600 border-r-2 hover:bg-gray-900 hover:text-white focus:outline-none dark:bg-gray-800 dark:text-white dark:hover:text-white dark:hover:bg-gray-700">

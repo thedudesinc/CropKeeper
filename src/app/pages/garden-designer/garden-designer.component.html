@@ -1,8 +1,9 @@
-<div class="relative flex grow">
-  <p *ngIf="gardenPlot$ | async"></p>
+<div *ngrxLet="gardenPlot$ as gardenPlot" class="relative flex grow">
   <!--Upper Left Buttons-->
-  <app-garden-designer-titlebar></app-garden-designer-titlebar>
+  <app-garden-designer-titlebar [title]="gardenPlot?.plotName"
+    (titleClickEventEmitter)="onTitleClick()"></app-garden-designer-titlebar>
   <!-- Left Side Tool Bar-->
   <app-garden-designer-toolbar></app-garden-designer-toolbar>
-  <app-garden-designer-modal [isVisible]="isModalVisible"></app-garden-designer-modal>
+  <app-garden-designer-modal [isVisible]="isModalVisible" [gardenPlot]="gardenPlot"
+    (saveEventEmitter)="onSaveEvent($event)"></app-garden-designer-modal>
 </div>

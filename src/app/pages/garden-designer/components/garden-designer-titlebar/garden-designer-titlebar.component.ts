@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { faAnglesRight, faRotateLeft, faRotateRight } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -11,4 +11,13 @@ export class GardenDesignerTitlebarComponent {
   faRotateRight = faRotateRight;
   faAnglesRight = faAnglesRight;
 
+  @Input()
+  title?: string;
+
+  @Output()
+  titleClickEventEmitter: EventEmitter<void> = new EventEmitter();
+
+  onTitleClick(): void {
+    this.titleClickEventEmitter.emit();
+  }
 }

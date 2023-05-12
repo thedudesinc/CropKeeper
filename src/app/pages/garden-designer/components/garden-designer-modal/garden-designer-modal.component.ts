@@ -1,20 +1,26 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ControlsOf } from '../../../../helpers/helper.types';
 import { GardenPlotPartialInput } from '../../../../services/models/garden-plot.model';
-import { GardenPlotService } from '../../../../services/garden-plot.service';
-import { LoadingService } from '../../../../services/loading.service';
+import { OutletContext } from '@angular/router';
 
 @Component({
   selector: 'app-garden-designer-modal',
   templateUrl: './garden-designer-modal.component.html',
   styleUrls: ['./garden-designer-modal.component.scss']
 })
-export class GardenDesignerModalComponent {
+export class GardenDesignerModalComponent implements OnInit {
   @Input()
   isVisible = false;
 
+  @Input()
+  gardenPlot?: GardenPlotPartialInput;
+
+  @Output()
+  saveEventEmitter: EventEmitter<GardenPlotPartialInput> = new EventEmitter<GardenPlotPartialInput>();
+
   gardenPropertiesForm: FormGroup<ControlsOf<GardenPlotPartialInput>> = new FormGroup<ControlsOf<GardenPlotPartialInput>>({
+    id: new FormControl(),
     plotName: new FormControl('', { nonNullable: true, validators: [Validators.required, Validators.minLength(2), Validators.maxLength(50)] }),
     zipCode: new FormControl('', { nonNullable: true, validators: [Validators.required, Validators.pattern(/^\d{5}(?:[-\s]\d{4})?$/)] }),
     notes: new FormControl('', { nonNullable: true }),
@@ -26,13 +32,13 @@ export class GardenDesignerModalComponent {
   get notes() { return this.gardenPropertiesForm.get('notes'); }
   get fabricJson() { return this.gardenPropertiesForm.get('fabricJson'); }
 
-  constructor(private gardenPlotService: GardenPlotService, private loadingService: LoadingService) { }
+  constructor() { }
+
+  ngOnInit(): void {
+    if (this.gardenPlot) { this.gardenPropertiesForm.patchValue(this.gardenPlot) }
+  }
 
   onSubmit(): void {
-    this.loadingService.changeLoadingVisible.next(true);
-    this.gardenPlotService.create(this.gardenPropertiesForm.getRawValue()).subscribe((response) => {
-      this.loadingService.changeLoadingVisible.next(false);
-      this.isVisible = false;
-    });
+    this.saveEventEmitter.emit(this.gardenPropertiesForm.getRawValue());
   }
 }

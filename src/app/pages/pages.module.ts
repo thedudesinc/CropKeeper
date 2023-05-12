@@ -10,6 +10,7 @@ import { GardenDesignerToolbarComponent } from './garden-designer/components/gar
 import { GardenDesignerTitlebarComponent } from './garden-designer/components/garden-designer-titlebar/garden-designer-titlebar.component';
 import { GardenDesignerModalComponent } from './garden-designer/components/garden-designer-modal/garden-designer-modal.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LetModule } from '@ngrx/component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     FontAwesomeModule,
     ReactiveFormsModule,
+    LetModule
   ]
 })
 export class PagesModule { }

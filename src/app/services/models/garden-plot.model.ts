@@ -1,4 +1,5 @@
 export interface GardenPlotPartialInput {
+  id?: string;
   plotName: string;
   zipCode: string;
   notes: string | null;
@@ -11,7 +12,7 @@ export interface GardenPlotInput {
   plotName: string;
   hardinessZone: number;
   lastFrostDate: Date;
-  zipCode: number;
+  zipCode: string;
   notes: string | null;
 }
 
@@ -22,7 +23,7 @@ export interface GardenPlotOutput {
   plotName: string;
   hardinessZone: number;
   lastFrostDate: Date;
-  zipCode: number;
+  zipCode: string;
   notes: string | null;
   dateCreated: Date;
   dateModified: Date;
