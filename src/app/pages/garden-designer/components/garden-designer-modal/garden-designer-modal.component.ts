@@ -1,8 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ControlsOf } from '../../../../helpers/helper.types';
 import { GardenPlotPartialInput } from '../../../../services/models/garden-plot.model';
-import { OutletContext } from '@angular/router';
 
 @Component({
   selector: 'app-garden-designer-modal',
@@ -18,6 +17,9 @@ export class GardenDesignerModalComponent implements OnInit {
 
   @Output()
   saveEventEmitter: EventEmitter<GardenPlotPartialInput> = new EventEmitter<GardenPlotPartialInput>();
+
+  @Output()
+  closeEventEmitter: EventEmitter<void> = new EventEmitter<void>();
 
   gardenPropertiesForm: FormGroup<ControlsOf<GardenPlotPartialInput>> = new FormGroup<ControlsOf<GardenPlotPartialInput>>({
     id: new FormControl(),
@@ -40,5 +42,9 @@ export class GardenDesignerModalComponent implements OnInit {
 
   onSubmit(): void {
     this.saveEventEmitter.emit(this.gardenPropertiesForm.getRawValue());
+  }
+
+  onClose(): void {
+    this.closeEventEmitter.emit();
   }
 }

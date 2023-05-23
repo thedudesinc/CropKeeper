@@ -27,4 +27,8 @@ export class GardenPlotService {
   update(gardenPlot: GardenPlotPartialInput): Observable<GardenPlotOutput> {
     return this.http.put<GardenPlotOutput>(this.baseUrl + '/' + gardenPlot.id, gardenPlot);
   }
+
+  delete(gardenPlotId: string): Observable<void> {
+    return this.http.delete<void>(this.baseUrl + '/' + gardenPlotId);
+  }
 }
