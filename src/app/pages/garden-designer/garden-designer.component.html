@@ -1,11 +1,11 @@
-<ng-container *ngIf="routerEvent$ | async">
-  <div *ngrxLet="gardenPlot$ as gardenPlot" class="relative flex grow">
-    <!--Upper Left Buttons-->
-    <app-garden-designer-titlebar [title]="gardenPlot?.plotName" [gardenPlotId]="gardenPlot?.id"
-      (titleClickEventEmitter)="openModal()"></app-garden-designer-titlebar>
-    <!-- Left Side Tool Bar-->
-    <app-garden-designer-toolbar></app-garden-designer-toolbar>
-    <app-garden-designer-modal [isVisible]="isModalVisible" [gardenPlot]="gardenPlot"
-      (saveEventEmitter)="onSaveEvent($event)" (closeEventEmitter)="closeModal()"></app-garden-designer-modal>
-  </div>
-</ng-container>
+<div class="relative w-full z-20">
+
+  <canvas id="fabricSurface" class="absolute" style="border: 1px solid #cccccc;" width="100px" height="100px"></canvas>
+  <app-garden-designer-titlebar [title]="gardenPlot?.plotName" [gardenPlotId]="gardenPlot?.id"
+  (titleClickEventEmitter)="openModal()"></app-garden-designer-titlebar>
+
+  <app-garden-designer-toolbar></app-garden-designer-toolbar>
+
+  <app-garden-designer-modal [isVisible]="isModalVisible" [gardenPlot]="gardenPlot"
+  (saveEventEmitter)="onSaveEvent($event)" (closeEventEmitter)="closeModal()"></app-garden-designer-modal>
+</div>
