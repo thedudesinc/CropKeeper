@@ -41,37 +41,28 @@ export class GardenDesignerComponent implements OnInit {
         }
       }),
       tap((gardenPlot) => {
+        this.fabricService._canvas?.dispose();
         if (gardenPlot && gardenPlot.fabricJson) {
           this.fabricService._canvas = new fabric.Canvas(
             'fabricSurface'
-          ).loadFromJSON(gardenPlot.fabricJson, () => console.log('toast'));
-          this.fabricService.resizeCanvas();
+          ).loadFromJSON(gardenPlot.fabricJson, () => {
+            console.log('toast');
+          });
         } else {
           this.fabricService._canvas = new fabric.Canvas('fabricSurface', {
             backgroundColor: '#ebebef',
           });
-          this.fabricService._canvas?.add(
-            new fabric.Rect({
-              left: 100,
-              top: 100,
-              fill: 'red',
-              width: 100,
-              height: 100,
-            })
-          );
-          this.fabricService._canvas?.renderAll();
-          console.log('gardenComponent', this.fabricService._canvas);
-          this.fabricService.resizeCanvas();
+
           window.addEventListener(
             'resize',
             () => {
-              console.log('resized');
               this.fabricService.resizeCanvas();
             },
             false
           );
         }
         this.gardenPlot = gardenPlot;
+        this.fabricService.resizeCanvas();
       })
     );
   }
@@ -93,10 +84,15 @@ export class GardenDesignerComponent implements OnInit {
           this.isModalVisible = false;
         });
     } else {
-      this.gardenPlotService.update(formData).subscribe((response) => {
-        this.loadingService.changeLoadingVisible.next(false);
-        this.isModalVisible = false;
-      });
+      this.gardenPlotService
+        .update({
+          ...formData,
+          fabricJson: JSON.stringify(this.fabricService._canvas?.toJSON()),
+        })
+        .subscribe((response) => {
+          this.loadingService.changeLoadingVisible.next(false);
+          this.isModalVisible = false;
+        });
     }
   }
 

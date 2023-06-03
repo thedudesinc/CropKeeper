@@ -4,6 +4,10 @@
     <fa-icon [icon]="faAnglesRight" class="mr-2 text-2xl"></fa-icon>
     {{title ?? 'Untitled'}}
   </button>
+  <button (click)="onSaveClick()" type="button" [disabled]="!gardenPlotId"
+    class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 disabled:cursor-not-allowed border-gray-600 border-r-2 hover:bg-gray-900 hover:text-white focus:outline-none dark:bg-gray-800 dark:text-white dark:hover:text-white dark:hover:bg-gray-700">
+    <fa-icon [icon]="faSave" class="text-2xl"></fa-icon>
+  </button>
   <button type="button"
     class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 border-gray-600 border-r-2 hover:bg-gray-900 hover:text-white focus:outline-none dark:bg-gray-800 dark:text-white dark:hover:text-white dark:hover:bg-gray-700">
     <fa-icon [icon]="faRotateLeft" class="text-2xl"></fa-icon>
