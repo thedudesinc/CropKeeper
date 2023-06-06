@@ -22,10 +22,42 @@ export class GardenDesignerToolbarComponent {
   faDotRow = faEllipsisVertical;
   faSeedling = faSeedling;
   faBrush = faBrush;
+  lineMode = false;
 
   constructor(private fabricService: FabricService) {}
 
-  onSquareButtonClick() {
-    this.fabricService.createRectangle();
+  onPencilButtonClick(): void {
+    if (!this.fabricService._canvas) return;
+    if (!this.lineMode) {
+      this.fabricService._canvas.on('mouse:down', (e) => {
+        this.fabricService.handleMouseDown(e);
+      });
+      this.fabricService._canvas.on('mouse:move', (e) => {
+        this.fabricService.handleMouseMove(e);
+      });
+      this.fabricService._canvas.on('mouse:up', (e) => {
+        this.fabricService.handleMouseUp(e);
+      });
+      this.lineMode = true;
+    } else {
+      this.fabricService._canvas.off('mouse:down');
+      this.fabricService._canvas.off('mouse:move');
+      this.fabricService._canvas.off('mouse:up');
+      this.lineMode = false;
+    }
   }
+
+  onSquareButtonClick(): void {
+    this.fabricService.drawRectangle();
+  }
+
+  onCircleButtonClick(): void {
+    this.fabricService.drawCircle();
+  }
+
+  onCropRowButtonClick(): void {}
+
+  onCropSingleButtonClick(): void {}
+
+  onTerrainButtonClick(): void {}
 }

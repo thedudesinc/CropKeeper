@@ -8,6 +8,8 @@ import { Subject } from 'rxjs';
 export class FabricService {
   public _canvas?: fabric.Canvas;
   public gardenPlotSaveEmitter: EventEmitter<void> = new EventEmitter();
+  public isDrawing = false;
+  public line = new fabric.Line();
 
   constructor() {}
 
@@ -24,15 +26,57 @@ export class FabricService {
     this.redraw();
   }
 
-  createRectangle() {
-    this._canvas?.add(
+  handleMouseDown(event: fabric.IEvent<MouseEvent | Event>) {
+    if (!this._canvas) return;
+    this.isDrawing = true;
+    const pointer = this._canvas.getPointer(event.e);
+    const points = [pointer.x, pointer.y, pointer.x, pointer.y];
+
+    this.line = new fabric.Line(points, {
+      strokeWidth: 3,
+      stroke: 'black',
+    });
+    this._canvas.add(this.line);
+  }
+
+  handleMouseMove(event: fabric.IEvent<MouseEvent | Event>) {
+    if (!this._canvas) return;
+    if (this.isDrawing) {
+      const pointer = this._canvas.getPointer(event.e);
+      this.line.set({ x2: pointer.x, y2: pointer.y });
+      this._canvas.renderAll();
+    }
+  }
+
+  handleMouseUp(event: fabric.IEvent<MouseEvent | Event>) {
+    this.isDrawing = false;
+  }
+
+  drawRectangle() {
+    if (!this._canvas) return;
+    this._canvas.add(
       new fabric.Rect({
-        backgroundColor: 'black',
-        angle: 45,
-        height: 250,
-        width: 250,
-        top: 500,
-        left: 500,
+        width: 50,
+        height: 50,
+        left: 250,
+        top: 250,
+        stroke: 'black',
+        strokeWidth: 2,
+        fill: '',
+      })
+    );
+  }
+
+  drawCircle() {
+    if (!this._canvas) return;
+    this._canvas.add(
+      new fabric.Circle({
+        radius: 25,
+        top: 250,
+        left: 250,
+        stroke: 'black',
+        strokeWidth: 2,
+        fill: '',
       })
     );
   }
