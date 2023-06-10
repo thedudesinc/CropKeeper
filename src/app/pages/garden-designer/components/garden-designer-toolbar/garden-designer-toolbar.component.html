@@ -1,30 +1,30 @@
 <div class="absolute left-1.5 top-1/2 -translate-y-1/2 inline-flex flex-col rounded-md shadow-sm" role="group">
-  <button (click)="onPencilButtonClick()" data-tooltip-target="tooltip-line" data-tooltip-placement="right" type="button"
+  <button (click)="onToolButtonClick(toolTypeEnum.DRAW_LINE)" data-tooltip-target="tooltip-line" data-tooltip-placement="right" type="button"
     class="basis-auto h-50 mb-2 md:mb-0 text-white bg-gray-800 hover:bg-blue-800 focus:outline-none font-medium text-sm px-5 py-2.5 text-center dark:bg-gray-800 dark:hover:bg-gray-600 border-gray-600 border-b">
     <fa-icon [icon]="faPencil" class="text-2xl"></fa-icon>
   </button>
   <div id="tooltip-line" role="tooltip"
-    class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+    class="absolute z-20 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
     Border Line
     <div class="tooltip-arrow" data-popper-arrow></div>
   </div>
 
-  <button (click)="onSquareButtonClick()" data-tooltip-target="tooltip-square" data-tooltip-placement="right" type="button"
+  <button (click)="onToolButtonClick(toolTypeEnum.DRAW_RECTANGLE)" data-tooltip-target="tooltip-square" data-tooltip-placement="right" type="button"
     class="basis-auto mb-2 md:mb-0 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none font-medium text-sm px-5 py-2.5 text-center dark:bg-gray-800 dark:hover:bg-gray-600 border-gray-600 border-b">
     <fa-icon [icon]="faSquare" class="text-2xl"></fa-icon>
   </button>
   <div id="tooltip-square" role="tooltip"
-    class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+    class="absolute z-20 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
     Square Border
     <div class="tooltip-arrow" data-popper-arrow></div>
   </div>
 
-  <button (click)="onCircleButtonClick()" data-tooltip-target="tooltip-circle" data-tooltip-placement="right" type="button"
+  <button (click)="onToolButtonClick(toolTypeEnum.DRAW_CIRCLE)" data-tooltip-target="tooltip-circle" data-tooltip-placement="right" type="button"
     class="basis-auto mb-2 md:mb-0 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none font-medium text-sm px-5 py-2.5 text-center dark:bg-gray-800 dark:hover:bg-gray-600 border-gray-600 border-b">
     <fa-icon [icon]="faCircle" class="text-2xl"></fa-icon>
   </button>
   <div id="tooltip-circle" role="tooltip"
-    class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+    class="absolute z-20 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
     Circle Border
     <div class="tooltip-arrow" data-popper-arrow></div>
   </div>
@@ -34,7 +34,7 @@
     <fa-icon [icon]="faEraser" class="text-2xl"></fa-icon>
   </button>
   <div id="tooltip-eraser" role="tooltip"
-    class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+    class="absolute z-20 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
     Eraser
     <div class="tooltip-arrow" data-popper-arrow></div>
   </div>
@@ -46,7 +46,7 @@
     <fa-icon [icon]="faSeedling" class="text-xs"></fa-icon>
   </button>
   <div id="tooltip-row" role="tooltip"
-    class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+    class="absolute z-20 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
     Row Crop
     <div class="tooltip-arrow" data-popper-arrow></div>
   </div>
@@ -56,7 +56,7 @@
     <fa-icon [icon]="faSeedling" class="text-2xl"></fa-icon>
   </button>
   <div id="tooltip-single" role="tooltip"
-    class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+    class="absolute z-20 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
     Single Crop
     <div class="tooltip-arrow" data-popper-arrow></div>
   </div>
@@ -66,7 +66,7 @@
     <fa-icon [icon]="faBrush" class="text-2xl"></fa-icon>
   </button>
   <div id="tooltip-texture" role="tooltip"
-    class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+    class="absolute z-20 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
     Ground Texture
     <div class="tooltip-arrow" data-popper-arrow></div>
   </div>

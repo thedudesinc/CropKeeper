@@ -1,4 +1,5 @@
 import { EventEmitter, Injectable } from '@angular/core';
+import { faB } from '@fortawesome/free-solid-svg-icons';
 import { fabric } from 'fabric';
 import { Subject } from 'rxjs';
 
@@ -10,6 +11,8 @@ export class FabricService {
   public gardenPlotSaveEmitter: EventEmitter<void> = new EventEmitter();
   public isDrawing = false;
   public line = new fabric.Line();
+  public rectangle = new fabric.Rect();
+  public circle = new fabric.Circle();
 
   constructor() {}
 
@@ -26,7 +29,7 @@ export class FabricService {
     this.redraw();
   }
 
-  handleMouseDown(event: fabric.IEvent<MouseEvent | Event>) {
+  drawLineMouseDown(event: fabric.IEvent<MouseEvent | Event>) {
     if (!this._canvas) return;
     this.isDrawing = true;
     const pointer = this._canvas.getPointer(event.e);
@@ -39,7 +42,7 @@ export class FabricService {
     this._canvas.add(this.line);
   }
 
-  handleMouseMove(event: fabric.IEvent<MouseEvent | Event>) {
+  drawLineMouseMove(event: fabric.IEvent<MouseEvent | Event>) {
     if (!this._canvas) return;
     if (this.isDrawing) {
       const pointer = this._canvas.getPointer(event.e);
@@ -48,9 +51,42 @@ export class FabricService {
     }
   }
 
-  handleMouseUp(event: fabric.IEvent<MouseEvent | Event>) {
+  drawLineMouseUp(event: fabric.IEvent<MouseEvent | Event>) {
     this.isDrawing = false;
   }
+
+  drawRectangleMouseDown(event: fabric.IEvent<MouseEvent | Event>) {
+    if (!this._canvas) return;
+    this.isDrawing = true;
+    const pointer = this._canvas.getPointer(event.e);
+    const points = [pointer.x, pointer.y, pointer.x, pointer.y];
+
+    this.rectangle = new fabric.Rect({
+      left: points[0],
+      top: points[1],
+      stroke: 'black',
+      strokeWidth: 2,
+      strokeUniform: true,
+      fill: '',
+    });
+    this._canvas.add(this.rectangle);
+  }
+
+  drawRectangleMouseMove(event: fabric.IEvent<MouseEvent | Event>) {
+    if (!this._canvas) return;
+    if (this.isDrawing) {
+      const pointer = this._canvas.getPointer(event.e);
+      this.rectangle.this._canvas.renderAll();
+    }
+  }
+
+  drawRectangleMouseUp(event: fabric.IEvent<MouseEvent | Event>) {}
+
+  drawCircleMouseDown(event: fabric.IEvent<MouseEvent | Event>) {}
+
+  drawCircleMouseUp(event: fabric.IEvent<MouseEvent | Event>) {}
+
+  drawCircleMouseMove(event: fabric.IEvent<MouseEvent | Event>) {}
 
   drawRectangle() {
     if (!this._canvas) return;
@@ -62,6 +98,7 @@ export class FabricService {
         top: 250,
         stroke: 'black',
         strokeWidth: 2,
+        strokeUniform: true,
         fill: '',
       })
     );
@@ -76,6 +113,7 @@ export class FabricService {
         left: 250,
         stroke: 'black',
         strokeWidth: 2,
+        strokeUniform: true,
         fill: '',
       })
     );

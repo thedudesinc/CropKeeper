@@ -9,6 +9,13 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FabricService } from 'src/app/services/fabric.service';
 
+export enum ToolType {
+  NONE = '',
+  DRAW_LINE = 'drawLine',
+  DRAW_RECTANGLE = 'drawRectangle',
+  DRAW_CIRCLE = 'drawCircle',
+}
+
 @Component({
   selector: 'app-garden-designer-toolbar',
   templateUrl: './garden-designer-toolbar.component.html',
@@ -22,42 +29,62 @@ export class GardenDesignerToolbarComponent {
   faDotRow = faEllipsisVertical;
   faSeedling = faSeedling;
   faBrush = faBrush;
-  lineMode = false;
+  activeTool: ToolType = ToolType.NONE;
+  toolTypeEnum = ToolType;
+  toolFunctionMap: {
+    [id: string]: {
+      mouseUp: (event: fabric.IEvent<MouseEvent | Event>) => void;
+      mouseDown: (event: fabric.IEvent<MouseEvent | Event>) => void;
+      mouseMove: (event: fabric.IEvent<MouseEvent | Event>) => void;
+    };
+  } = {
+    drawLine: {
+      mouseUp: this.fabricService.drawLineMouseUp,
+      mouseDown: this.fabricService.drawLineMouseDown,
+      mouseMove: this.fabricService.drawLineMouseMove,
+    },
+    drawRectangle: {
+      mouseUp: this.fabricService.drawRectangleMouseUp,
+      mouseDown: this.fabricService.drawRectangleMouseDown,
+      mouseMove: this.fabricService.drawRectangleMouseMove,
+    },
+    drawCircle: {
+      mouseUp: this.fabricService.drawCircleMouseUp,
+      mouseDown: this.fabricService.drawCircleMouseDown,
+      mouseMove: this.fabricService.drawCircleMouseMove,
+    },
+  };
 
   constructor(private fabricService: FabricService) {}
 
-  onPencilButtonClick(): void {
+  handleMouseEvent(): void {
     if (!this.fabricService._canvas) return;
-    if (!this.lineMode) {
-      this.fabricService._canvas.on('mouse:down', (e) => {
-        this.fabricService.handleMouseDown(e);
-      });
-      this.fabricService._canvas.on('mouse:move', (e) => {
-        this.fabricService.handleMouseMove(e);
-      });
-      this.fabricService._canvas.on('mouse:up', (e) => {
-        this.fabricService.handleMouseUp(e);
-      });
-      this.lineMode = true;
+    if (this.activeTool) {
+      this.fabricService._canvas.on(
+        'mouse:up',
+        this.toolFunctionMap[this.activeTool].mouseUp.bind(this.fabricService)
+      );
+      this.fabricService._canvas.on(
+        'mouse:down',
+        this.toolFunctionMap[this.activeTool].mouseDown.bind(this.fabricService)
+      );
+      this.fabricService._canvas.on(
+        'mouse:move',
+        this.toolFunctionMap[this.activeTool].mouseMove.bind(this.fabricService)
+      );
     } else {
       this.fabricService._canvas.off('mouse:down');
       this.fabricService._canvas.off('mouse:move');
       this.fabricService._canvas.off('mouse:up');
-      this.lineMode = false;
     }
   }
 
-  onSquareButtonClick(): void {
-    this.fabricService.drawRectangle();
+  onToolButtonClick(toolName: ToolType): void {
+    if (this.activeTool === toolName) {
+      this.activeTool = ToolType.NONE;
+    } else {
+      this.activeTool = toolName;
+    }
+    this.handleMouseEvent();
   }
-
-  onCircleButtonClick(): void {
-    this.fabricService.drawCircle();
-  }
-
-  onCropRowButtonClick(): void {}
-
-  onCropSingleButtonClick(): void {}
-
-  onTerrainButtonClick(): void {}
 }
