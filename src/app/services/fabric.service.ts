@@ -12,7 +12,9 @@ export class FabricService {
   public isDrawing = false;
   public line = new fabric.Line();
   public rectangle = new fabric.Rect();
-  public circle = new fabric.Circle();
+  public ellipse = new fabric.Ellipse();
+  public x_coord = 0;
+  public y_coord = 0;
 
   constructor() {}
 
@@ -31,6 +33,7 @@ export class FabricService {
 
   drawLineMouseDown(event: fabric.IEvent<MouseEvent | Event>) {
     if (!this._canvas) return;
+    this._canvas.selection = false;
     this.isDrawing = true;
     const pointer = this._canvas.getPointer(event.e);
     const points = [pointer.x, pointer.y, pointer.x, pointer.y];
@@ -44,28 +47,35 @@ export class FabricService {
 
   drawLineMouseMove(event: fabric.IEvent<MouseEvent | Event>) {
     if (!this._canvas) return;
-    if (this.isDrawing) {
-      const pointer = this._canvas.getPointer(event.e);
-      this.line.set({ x2: pointer.x, y2: pointer.y });
-      this._canvas.renderAll();
-    }
+    if (!this.isDrawing) return;
+    const pointer = this._canvas.getPointer(event.e);
+    this.line.set({ x2: pointer.x, y2: pointer.y });
+    this._canvas.renderAll();
   }
 
   drawLineMouseUp(event: fabric.IEvent<MouseEvent | Event>) {
+    if (!this._canvas) return;
     this.isDrawing = false;
+    this._canvas.selection = true;
   }
 
   drawRectangleMouseDown(event: fabric.IEvent<MouseEvent | Event>) {
     if (!this._canvas) return;
     this.isDrawing = true;
+    this._canvas.selection = false;
     const pointer = this._canvas.getPointer(event.e);
-    const points = [pointer.x, pointer.y, pointer.x, pointer.y];
+    this.x_coord = pointer.x;
+    this.y_coord = pointer.y;
 
     this.rectangle = new fabric.Rect({
-      left: points[0],
-      top: points[1],
+      left: this.x_coord,
+      top: this.y_coord,
+      originX: 'left',
+      originY: 'top',
+      width: pointer.x - this.x_coord,
+      height: pointer.y - this.y_coord,
       stroke: 'black',
-      strokeWidth: 2,
+      strokeWidth: 3,
       strokeUniform: true,
       fill: '',
     });
@@ -74,48 +84,70 @@ export class FabricService {
 
   drawRectangleMouseMove(event: fabric.IEvent<MouseEvent | Event>) {
     if (!this._canvas) return;
-    if (this.isDrawing) {
-      const pointer = this._canvas.getPointer(event.e);
-      this.rectangle.this._canvas.renderAll();
+    if (!this.isDrawing) return;
+    const pointer = this._canvas.getPointer(event.e);
+    if (this.x_coord > pointer.x) {
+      this.rectangle.set({ left: Math.abs(pointer.x) });
     }
+    if (this.y_coord > pointer.y) {
+      this.rectangle.set({ top: Math.abs(pointer.y) });
+    }
+
+    this.rectangle.set({ width: Math.abs(this.x_coord - pointer.x) });
+    this.rectangle.set({ height: Math.abs(this.y_coord - pointer.y) });
+
+    this._canvas.renderAll();
   }
 
-  drawRectangleMouseUp(event: fabric.IEvent<MouseEvent | Event>) {}
-
-  drawCircleMouseDown(event: fabric.IEvent<MouseEvent | Event>) {}
-
-  drawCircleMouseUp(event: fabric.IEvent<MouseEvent | Event>) {}
-
-  drawCircleMouseMove(event: fabric.IEvent<MouseEvent | Event>) {}
-
-  drawRectangle() {
+  drawRectangleMouseUp(event: fabric.IEvent<MouseEvent | Event>) {
     if (!this._canvas) return;
-    this._canvas.add(
-      new fabric.Rect({
-        width: 50,
-        height: 50,
-        left: 250,
-        top: 250,
-        stroke: 'black',
-        strokeWidth: 2,
-        strokeUniform: true,
-        fill: '',
-      })
-    );
+    this.isDrawing = false;
+    this._canvas.selection = true;
   }
 
-  drawCircle() {
+  drawEllipseMouseDown(event: fabric.IEvent<MouseEvent | Event>) {
     if (!this._canvas) return;
-    this._canvas.add(
-      new fabric.Circle({
-        radius: 25,
-        top: 250,
-        left: 250,
-        stroke: 'black',
-        strokeWidth: 2,
-        strokeUniform: true,
-        fill: '',
-      })
-    );
+    this.isDrawing = true;
+    this._canvas.selection = false;
+    const pointer = this._canvas.getPointer(event.e);
+    this.x_coord = pointer.x;
+    this.y_coord = pointer.y;
+
+    this.ellipse = new fabric.Ellipse({
+      left: this.x_coord,
+      top: this.y_coord,
+      originX: 'left',
+      originY: 'top',
+      rx: pointer.x - this.x_coord,
+      ry: pointer.y - this.y_coord,
+      stroke: 'black',
+      strokeWidth: 3,
+      strokeUniform: true,
+      fill: '',
+    });
+    this._canvas.add(this.ellipse);
+  }
+
+  drawEllipseMouseMove(event: fabric.IEvent<MouseEvent | Event>) {
+    if (!this._canvas) return;
+    if (!this.isDrawing) return;
+    const pointer = this._canvas.getPointer(event.e);
+    if (this.x_coord > pointer.x) {
+      this.ellipse.set({ left: Math.abs(pointer.x) });
+    }
+    if (this.y_coord > pointer.y) {
+      this.ellipse.set({ top: Math.abs(pointer.y) });
+    }
+
+    this.ellipse.set({ rx: Math.abs((this.x_coord - pointer.x) / 2) });
+    this.ellipse.set({ ry: Math.abs((this.y_coord - pointer.y) / 2) });
+
+    this._canvas.renderAll();
+  }
+
+  drawEllipseMouseUp(event: fabric.IEvent<MouseEvent | Event>) {
+    if (!this._canvas) return;
+    this.isDrawing = false;
+    this._canvas.selection = true;
   }
 }

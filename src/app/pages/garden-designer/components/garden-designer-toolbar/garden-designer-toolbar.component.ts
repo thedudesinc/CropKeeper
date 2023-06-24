@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { faCircle, faSquare } from '@fortawesome/free-regular-svg-icons';
 import {
   faBrush,
@@ -13,7 +13,7 @@ export enum ToolType {
   NONE = '',
   DRAW_LINE = 'drawLine',
   DRAW_RECTANGLE = 'drawRectangle',
-  DRAW_CIRCLE = 'drawCircle',
+  DRAW_ELLIPSE = 'drawEllipse',
 }
 
 @Component({
@@ -22,6 +22,24 @@ export enum ToolType {
   styleUrls: ['./garden-designer-toolbar.component.scss'],
 })
 export class GardenDesignerToolbarComponent {
+  @HostListener('document:keyup', ['$event'])
+  handleKeyboardEvents(event: KeyboardEvent) {
+    switch (event.key) {
+      case 'Delete':
+        const activeObjects =
+          this.fabricService._canvas?.getActiveObjects() ?? [];
+        activeObjects.forEach((object) =>
+          this.fabricService._canvas!.remove(object)
+        );
+        break;
+      case 'Escape':
+        this.activeTool = ToolType.NONE;
+        this.handleMouseEvent();
+        break;
+      default:
+    }
+  }
+
   faPencil = faPencil;
   faEraser = faEraser;
   faSquare = faSquare;
@@ -48,10 +66,10 @@ export class GardenDesignerToolbarComponent {
       mouseDown: this.fabricService.drawRectangleMouseDown,
       mouseMove: this.fabricService.drawRectangleMouseMove,
     },
-    drawCircle: {
-      mouseUp: this.fabricService.drawCircleMouseUp,
-      mouseDown: this.fabricService.drawCircleMouseDown,
-      mouseMove: this.fabricService.drawCircleMouseMove,
+    drawEllipse: {
+      mouseUp: this.fabricService.drawEllipseMouseUp,
+      mouseDown: this.fabricService.drawEllipseMouseDown,
+      mouseMove: this.fabricService.drawEllipseMouseMove,
     },
   };
 
@@ -59,6 +77,11 @@ export class GardenDesignerToolbarComponent {
 
   handleMouseEvent(): void {
     if (!this.fabricService._canvas) return;
+
+    this.fabricService._canvas.off('mouse:down');
+    this.fabricService._canvas.off('mouse:move');
+    this.fabricService._canvas.off('mouse:up');
+
     if (this.activeTool) {
       this.fabricService._canvas.on(
         'mouse:up',
@@ -72,10 +95,6 @@ export class GardenDesignerToolbarComponent {
         'mouse:move',
         this.toolFunctionMap[this.activeTool].mouseMove.bind(this.fabricService)
       );
-    } else {
-      this.fabricService._canvas.off('mouse:down');
-      this.fabricService._canvas.off('mouse:move');
-      this.fabricService._canvas.off('mouse:up');
     }
   }
 
