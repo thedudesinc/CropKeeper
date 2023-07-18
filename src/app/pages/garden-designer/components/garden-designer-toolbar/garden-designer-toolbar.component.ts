@@ -106,4 +106,8 @@ export class GardenDesignerToolbarComponent {
     }
     this.handleMouseEvent();
   }
+
+  onEraseButtonClick() {
+    this.fabricService.deleteSelection();
+  }
 }

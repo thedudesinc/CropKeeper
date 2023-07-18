@@ -29,7 +29,7 @@
     <div class="tooltip-arrow" data-popper-arrow></div>
   </div>
 
-  <button data-tooltip-target="tooltip-eraser" data-tooltip-placement="right" type="button"
+  <button (click)="onEraseButtonClick()" data-tooltip-target="tooltip-eraser" data-tooltip-placement="right" type="button"
     class="basis-auto mb-2 md:mb-0 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none font-medium text-sm px-5 py-2.5 text-center dark:bg-gray-800 dark:hover:bg-gray-600 border-gray-600 border-b">
     <fa-icon [icon]="faEraser" class="text-2xl"></fa-icon>
   </button>

@@ -10,9 +10,12 @@ export class FabricService {
   public _canvas?: fabric.Canvas;
   public gardenPlotSaveEmitter: EventEmitter<void> = new EventEmitter();
   public isDrawing = false;
+  public isErasing = false;
   public line = new fabric.Line();
   public rectangle = new fabric.Rect();
   public ellipse = new fabric.Ellipse();
+  public eraserAreaCircle = new fabric.Circle();
+  public eraserRadius = 10;
   public x_coord = 0;
   public y_coord = 0;
 
@@ -149,5 +152,16 @@ export class FabricService {
     if (!this._canvas) return;
     this.isDrawing = false;
     this._canvas.selection = true;
+  }
+
+  deleteSelection() {
+    if (!this._canvas) return;
+    var selected = this._canvas.getActiveObjects();
+    if (selected) {
+      if (confirm('Deleted selected?')) {
+        this._canvas.remove(...selected);
+      }
+      this._canvas.discardActiveObject().renderAll();
+    }
   }
 }
