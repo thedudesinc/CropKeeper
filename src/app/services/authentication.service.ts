@@ -3,28 +3,33 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, map, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { LoginInput, LoginOutput } from './models/authentication.model';
+import { LoginResponse } from './models/user.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthenticationService {
-  public changeAuthenticated: BehaviorSubject<boolean> = new BehaviorSubject(this.loadState());
-  public isAuthenticated$: Observable<boolean> = this.changeAuthenticated.asObservable();
+  public changeUser: BehaviorSubject<LoginResponse | undefined> =
+    new BehaviorSubject(this.loadState());
+  public user$: Observable<LoginResponse | undefined> =
+    this.changeUser.asObservable();
 
   private baseUrl = environment.baseUrl + '/authentication/login';
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  loadState(): boolean {
-    const localStorageToken = localStorage.getItem('token');
-    return !!localStorageToken;
+  loadState(): LoginResponse | undefined {
+    const localStorageUser = localStorage.getItem('user');
+    if (localStorageUser === null) return undefined;
+    return JSON.parse(localStorageUser);
   }
 
   authenticate(login: LoginInput): Observable<boolean> {
-    return this.http.post<LoginOutput>(this.baseUrl, login).pipe(
+    return this.http.post<LoginResponse>(this.baseUrl, login).pipe(
       map((response) => {
-        const isAuthenticated = !!response.value && response.statusCode === 200;
-        this.changeAuthenticated.next(isAuthenticated);
-        if (isAuthenticated) localStorage.setItem('token', response.value ?? '');
+        const isAuthenticated = !!response.stringToken;
+        this.changeUser.next(response);
+        if (isAuthenticated)
+          localStorage.setItem('user', JSON.stringify(response));
         return isAuthenticated;
       })
     );

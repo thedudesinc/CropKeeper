@@ -11,15 +11,19 @@ import { GardenDesignerTitlebarComponent } from './garden-designer/components/ga
 import { GardenDesignerModalComponent } from './garden-designer/components/garden-designer-modal/garden-designer-modal.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LetModule } from '@ngrx/component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   {
-    path: '', component: PagesComponent, children: [
+    path: '',
+    component: PagesComponent,
+    children: [
       { path: '', component: DashboardComponent },
       { path: 'designer/:id', component: GardenDesignerComponent },
-      { path: 'designer', component: GardenDesignerComponent }
-    ]
-  }
+      { path: 'designer', component: GardenDesignerComponent },
+      { path: 'profile', component: ProfileComponent },
+    ],
+  },
 ];
 
 @NgModule({
@@ -31,13 +35,14 @@ const routes: Routes = [
     GardenDesignerToolbarComponent,
     GardenDesignerTitlebarComponent,
     GardenDesignerModalComponent,
+    ProfileComponent,
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     FontAwesomeModule,
     ReactiveFormsModule,
-    LetModule
-  ]
+    LetModule,
+  ],
 })
-export class PagesModule { }
+export class PagesModule {}

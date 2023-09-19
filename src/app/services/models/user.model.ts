@@ -19,4 +19,10 @@ export interface UserOutput {
   dateDeleted: string | null;
 }
 
-
+export interface LoginResponse {
+  displayName: string;
+  email: string;
+  stringToken: string;
+  allowEmailNotifications: boolean;
+  allowSiteNotifications: boolean;
+}
