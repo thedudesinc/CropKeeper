@@ -1,34 +1,72 @@
-<div>
-  <img class="mx-auto my-10 rounded-full w-36 h-36" src="/docs/images/people/profile-picture-5.jpg" alt="Extra large avatar">
-  <form action="">
+<div *ngIf="profile$ | async">
+  <img class="mx-auto my-10 rounded-full w-36 h-36" [src]="displayImageUrl?.value" alt="Extra large avatar">
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" action="#">
     <div class="flex-auto justify-center mx-auto w-1/4">
       <div class="mb-6">
-        <label for="user_name" class="block mb-2 text-base font-medium text-gray-900 dark:text-white">Username</label>
-        <input type="text" id="user_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="John" required>
+        <label for="displayName" class="block mb-2 text-base font-medium text-gray-900 dark:text-white">Display Name</label>
+        <input formControlName="displayName" type="text" id="displayName" required class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" >
+        <div *ngIf="displayName?.invalid && (displayName?.dirty || displayName?.touched)" class="text-red-500">
+          <div *ngIf="displayName?.errors?.['required']">
+            Name is required.
+          </div>
+          <div *ngIf="displayName?.errors?.['minlength']">
+            Name must be at least 2 characters long.
+          </div>
+          <div *ngIf="displayName?.errors?.['maxlength']">
+            Name must be less than 50 characters long.
+          </div>
+        </div>
+      </div>
+      <div class="mb-6">
+        <label for="displayImageUrl" class="block mb-2 text-base font-medium text-gray-900 dark:text-white">Display Image Url</label>
+        <input formControlName="displayImageUrl" type="text" id="displayImageUrl" required class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" >
       </div>
       <div class="mb-6">
         <label for="email" class="block mb-2 text-base font-medium text-gray-900 dark:text-white">Email address</label>
-        <input type="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="john.doe@company.com" required>
+        <input formControlName="email" type="email" id="email" required class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="text-red-500">
+          <div *ngIf="email?.errors?.['required']">
+            Email is required.
+          </div>
+          <div *ngIf="email?.errors?.['email']">
+            Valid email is required.
+          </div>
+          <div *ngIf="email?.errors?.['emailAlreadyExists']">
+            Email is already in use.
+          </div>
+        </div>
       </div>
       <div class="mb-6">
-        <label for="zip_code" class="block mb-2 text-base font-medium text-gray-900 dark:text-white">Zip Code</label>
-        <input type="text" id="zip_code" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="John" required>
+        <label for="zipCode" class="block mb-2 text-base font-medium text-gray-900 dark:text-white">Zip Code</label>
+        <input formControlName="zip" type="text" id="zipCode" required class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        <div *ngIf="zip?.invalid && (zip?.dirty || zip?.touched)" class="text-red-500">
+          <div *ngIf="zip?.errors?.['required']">
+            Zip is required.
+          </div>
+          <div *ngIf="zip?.errors?.['pattern']">
+            Valid zip code is required.
+          </div>
+        </div>
       </div>
-      <div class="mb-6">
+      <!-- <div class="mb-6">
         <label for="password" class="block mb-2 text-base font-medium text-gray-900 dark:text-white">Password</label>
-        <input type="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="•••••••••" required>
-      </div>
-      <div class="mb-6">
-        <label for="confirm_password" class="block mb-2 text-base font-medium text-gray-900 dark:text-white">Confirm password</label>
-        <input type="password" id="confirm_password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="•••••••••" required>
-      </div>
+        <input formControlName="password" type="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="text-red-500">
+          <div *ngIf="password?.errors?.['minlength']">
+            Password must be at least 10 characters long.
+          </div>
+          <div *ngIf="password?.errors?.['maxlength']">
+            Password must be less than 100 characters long.
+          </div>
+        </div>
+      </div> -->
       <div class="flex items-center mb-4">
-        <input id="email-notifications-checkbox" type="checkbox" value="" class="w-10 h-10 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+        <input formControlName="allowEmailNotifications" id="email-notifications-checkbox" type="checkbox" value="" class="w-10 h-10 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
         <label for="email-notifications-checkbox" class="mx-6 text-base font-medium text-gray-900 dark:text-gray-300">Allow Email Notifications</label>
-        <input id="site-notifications-checkbox" type="checkbox" value="" class="w-10 h-10 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+        <input formControlName="allowSiteNotifications" id="site-notifications-checkbox" type="checkbox" value="" class="w-10 h-10 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
         <label for="site-notifications-checkbox" class="ml-6 text-base font-medium text-gray-900 dark:text-gray-300">Allow Site Notifications</label>
     </div>
-    <button type="submit" class="my-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base w-full sm:w-auto px-10 py-5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+    <button type="submit" [disabled]="!profileForm.valid || profileForm.pristine" class="my-4 text-white disabled:cursor-not-allowed bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base w-full sm:w-auto px-10 py-5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Save</button>
     </div>
   </form>
 </div>

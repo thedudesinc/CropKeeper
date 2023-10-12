@@ -8,7 +8,7 @@ import { SignupComponent } from './layout/signup/signup.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoadingComponent } from './layout/loading/loading.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { GlobalInterceptor } from './shared/global.interceptor';
+import { GlobalInterceptor } from './shared/interceptors/global.interceptor';
 
 @NgModule({
   declarations: [

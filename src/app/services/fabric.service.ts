@@ -1,7 +1,5 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { faB } from '@fortawesome/free-solid-svg-icons';
 import { fabric } from 'fabric';
-import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',

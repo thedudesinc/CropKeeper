@@ -8,7 +8,7 @@ import {
 } from '@angular/common/http';
 import { Observable, catchError, of } from 'rxjs';
 import { Router } from '@angular/router';
-import { LoadingService } from '../services/loading.service';
+import { LoadingService } from '../../services/loading.service';
 
 @Injectable()
 export class GlobalInterceptor implements HttpInterceptor {

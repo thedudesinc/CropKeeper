@@ -12,6 +12,7 @@ import { GardenDesignerModalComponent } from './garden-designer/components/garde
 import { ReactiveFormsModule } from '@angular/forms';
 import { LetModule } from '@ngrx/component';
 import { ProfileComponent } from './profile/profile.component';
+import { SharedModule } from '../shared/shared.module';
 
 const routes: Routes = [
   {
@@ -43,6 +44,7 @@ const routes: Routes = [
     FontAwesomeModule,
     ReactiveFormsModule,
     LetModule,
+    SharedModule,
   ],
 })
 export class PagesModule {}
