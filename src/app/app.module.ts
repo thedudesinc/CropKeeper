@@ -9,7 +9,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LoadingComponent } from './layout/loading/loading.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { GlobalInterceptor } from './shared/interceptors/global.interceptor';
-import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -23,8 +22,7 @@ import { SharedModule } from './shared/shared.module';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FontAwesomeModule,
-    SharedModule
+    FontAwesomeModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: GlobalInterceptor, multi: true },
