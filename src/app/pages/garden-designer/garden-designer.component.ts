@@ -82,6 +82,7 @@ export class GardenDesignerComponent implements OnInit {
         .subscribe((response) => {
           this.loadingService.changeLoadingVisible.next(false);
           this.isModalVisible = false;
+          this.gardenPlot = response;
         });
     } else {
       this.gardenPlotService
@@ -92,6 +93,7 @@ export class GardenDesignerComponent implements OnInit {
         .subscribe((response) => {
           this.loadingService.changeLoadingVisible.next(false);
           this.isModalVisible = false;
+          this.gardenPlot = response;
         });
     }
   }

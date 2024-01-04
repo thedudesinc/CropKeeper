@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, map, tap } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, map, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { LoginInput, LoginOutput } from './models/authentication.model';
+import { LoginInput } from './models/authentication.model';
 import { LoginResponse } from './models/user.model';
 
 @Injectable({
@@ -31,7 +31,13 @@ export class AuthenticationService {
         if (isAuthenticated)
           localStorage.setItem('user', JSON.stringify(response));
         return isAuthenticated;
-      })
+      }),
+      catchError(() => of(false))
     );
+  }
+
+  destroyState(): void {
+    localStorage.clear();
+    this.changeUser.next(undefined);
   }
 }

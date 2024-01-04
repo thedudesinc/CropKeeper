@@ -1,16 +1,10 @@
 import {
   Component,
-  Input,
-  OnChanges,
   OnInit,
-  SimpleChanges,
 } from '@angular/core';
 import {
-  AbstractControl,
-  AsyncValidatorFn,
   FormControl,
   FormGroup,
-  ValidationErrors,
   Validators,
 } from '@angular/forms';
 import { Observable, filter, switchMap, tap } from 'rxjs';
@@ -87,7 +81,7 @@ export class ProfileComponent implements OnInit {
   constructor(
     private userService: UserService,
     private loadingService: LoadingService,
-    private authenticationService: AuthenticationService
+    authenticationService: AuthenticationService
   ) {
     this.profile$ = authenticationService.user$.pipe(
       filter((user) => !!user),
