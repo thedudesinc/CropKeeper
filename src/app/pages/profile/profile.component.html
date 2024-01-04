@@ -1,5 +1,5 @@
 <div *ngIf="profile$ | async">
-  <img class="mx-auto my-10 rounded-full w-36 h-36" [src]="displayImageUrl?.value" alt="Extra large avatar">
+  <img class="mx-auto my-10 rounded-full w-36 h-36" [src]="displayImageUrl?.value | safe: 'url'" alt="Extra large avatar">
   <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" action="#">
     <div class="flex-auto justify-center mx-auto w-1/4">
       <div class="mb-6">
