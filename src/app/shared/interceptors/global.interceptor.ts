@@ -30,7 +30,11 @@ export class GlobalInterceptor implements HttpInterceptor {
 
     return next.handle(request).pipe(
       catchError((error) => {
-        if (error instanceof HttpErrorResponse && error.status === 401 && !request.url.includes('api/authentication/login')) {
+        if (
+          error instanceof HttpErrorResponse &&
+          error.status === 401 &&
+          !request.url.includes('api/authentication/login')
+        ) {
           this.router.navigate(['login']);
         }
         this.loadingService.changeLoadingVisible.next(false);

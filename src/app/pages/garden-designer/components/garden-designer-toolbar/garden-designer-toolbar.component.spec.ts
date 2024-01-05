@@ -8,9 +8,8 @@ describe('GardenDesignerToolbarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GardenDesignerToolbarComponent ]
-    })
-    .compileComponents();
+      declarations: [GardenDesignerToolbarComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(GardenDesignerToolbarComponent);
     component = fixture.componentInstance;

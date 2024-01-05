@@ -1,12 +1,5 @@
-import {
-  Component,
-  OnInit,
-} from '@angular/core';
-import {
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable, filter, switchMap, tap } from 'rxjs';
 import { ControlsOf } from 'src/app/helpers/helper.types';
 import { EmailValidator } from 'src/app/layout/signup/signup.component';

@@ -1,10 +1,11 @@
-import { Injectable } from "@angular/core";
-import { Observable, Subject } from "rxjs";
+import { Injectable } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class HeaderService {
   refreshGardenPlotList: Subject<boolean> = new Subject();
-  gardenPlotListRefresh$: Observable<boolean> = this.refreshGardenPlotList.asObservable();
+  gardenPlotListRefresh$: Observable<boolean> =
+    this.refreshGardenPlotList.asObservable();
 }

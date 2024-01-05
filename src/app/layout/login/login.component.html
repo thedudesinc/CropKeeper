@@ -1,40 +1,69 @@
-<div class="w-3/12 mx-auto px-10">
+<div class="max-w-screen-sm w-full mx-auto px-10">
   <h1 class="text-5xl font-extrabold dark:text-white py-20">Login</h1>
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="pb-10">
     <div class="mb-6">
-      <label for="email" class="block mb-2 text-md font-medium text-gray-900 dark:text-white">Email</label>
-      <input formControlName="email" type="email" id="email"
+      <label
+        for="email"
+        class="block mb-2 text-md font-medium text-gray-900 dark:text-white"
+        >Email</label
+      >
+      <input
+        formControlName="email"
+        type="email"
+        id="email"
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        required>
-      <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="text-red-500">
-        <div *ngIf="email?.errors?.['required']">
-          Email is required.
-        </div>
-        <div *ngIf="email?.errors?.['email']">
-          Valid email is required
-        </div>
+        required
+      />
+      <div
+        *ngIf="email?.invalid && (email?.dirty || email?.touched)"
+        class="text-red-500"
+      >
+        <div *ngIf="email?.errors?.['required']">Email is required.</div>
+        <div *ngIf="email?.errors?.['email']">Valid email is required</div>
       </div>
     </div>
     <div class="mb-6">
-      <label for="password" class="block mb-2 text-md font-medium text-gray-900 dark:text-white">Password</label>
-      <input formControlName="password" type="password" id="password"
+      <label
+        for="password"
+        class="block mb-2 text-md font-medium text-gray-900 dark:text-white"
+        >Password</label
+      >
+      <input
+        formControlName="password"
+        type="password"
+        id="password"
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        required>
-      <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="text-red-500">
-        <div *ngIf="password?.errors?.['required']">
-          Password is required
-        </div>
+        required
+      />
+      <div
+        *ngIf="password?.invalid && (password?.dirty || password?.touched)"
+        class="text-red-500"
+      >
+        <div *ngIf="password?.errors?.['required']">Password is required</div>
       </div>
     </div>
     <div class="flex items-start mb-6">
       <div class="flex items-center h-5">
-        <input id="remember" type="checkbox" formControlName="rememberMe"
-          class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800">
+        <input
+          id="remember"
+          type="checkbox"
+          formControlName="rememberMe"
+          class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
+        />
       </div>
-      <label for="remember" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Remember me</label>
+      <label
+        for="remember"
+        class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+        >Remember me</label
+      >
     </div>
-    <button type="submit" [disabled]="!loginForm.valid"
-      class="text-white bg-emerald-800 hover:bg-emerald-900 focus:ring-4 focus:outline-none disabled:cursor-not-allowed focus:ring-blue-300 font-medium rounded-lg text-md w-full sm:w-auto px-5 py-2.5 text-center dark:bg-emerald-800 dark:hover:bg-emerald-900 dark:focus:ring-blue-800">Submit</button>
+    <button
+      type="submit"
+      [disabled]="!loginForm.valid"
+      class="text-white bg-emerald-800 hover:bg-emerald-900 focus:ring-4 focus:outline-none disabled:cursor-not-allowed focus:ring-blue-300 font-medium rounded-lg text-md w-full sm:w-auto px-5 py-2.5 text-center dark:bg-emerald-800 dark:hover:bg-emerald-900 dark:focus:ring-blue-800"
+    >
+      Login
+    </button>
     <div *ngIf="showLoginError" class="text-red-500 mt-3">Invalid Login</div>
   </form>
 </div>

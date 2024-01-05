@@ -3,13 +3,12 @@ import { Component, HostListener, OnInit, Renderer2 } from '@angular/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
   title = 'CropKeeper';
 
-  constructor(private renderer: Renderer2) {
-  }
+  constructor(private renderer: Renderer2) {}
 
   ngOnInit(): void {
     this.initTheme();
@@ -27,7 +26,9 @@ export class AppComponent implements OnInit {
     const theme = localStorage.getItem('theme') || 'dark';
     const newTheme = theme === 'dark' ? 'light' : 'dark';
 
-    ['light', 'dark'].forEach((t) => this.renderer.removeClass(document.body, t));
+    ['light', 'dark'].forEach((t) =>
+      this.renderer.removeClass(document.body, t)
+    );
 
     this.renderer.addClass(document.body, newTheme);
     localStorage.setItem('theme', newTheme);

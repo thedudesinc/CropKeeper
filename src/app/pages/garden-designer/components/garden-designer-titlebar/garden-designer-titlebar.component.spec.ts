@@ -8,9 +8,8 @@ describe('GardenDesignerTitlebarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GardenDesignerTitlebarComponent ]
-    })
-    .compileComponents();
+      declarations: [GardenDesignerTitlebarComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(GardenDesignerTitlebarComponent);
     component = fixture.componentInstance;
