@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LoadingComponent } from './layout/loading/loading.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { GlobalInterceptor } from './shared/interceptors/global.interceptor';
+import { ToastComponent } from './shared/components/toast/toast.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { GlobalInterceptor } from './shared/interceptors/global.interceptor';
     LoginComponent,
     SignupComponent,
     LoadingComponent,
+    ToastComponent,
   ],
   imports: [
     BrowserModule,
