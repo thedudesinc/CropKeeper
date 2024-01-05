@@ -1,15 +1,26 @@
-<div class="w-3/12 mx-auto px-10">
+<div class="max-w-screen-sm w-full mx-auto px-10">
   <h1 class="text-5xl font-extrabold dark:text-white py-20">Sign Up</h1>
   <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="pb-10">
     <div class="mb-6">
-      <label for="displayName" class="block mb-2 text-md font-medium text-gray-900 dark:text-white">Display Name</label>
-      <input formControlName="displayName" type="text" id="displayName"
+      <label
+        for="displayName"
+        class="block mb-2 text-md font-medium text-gray-900 dark:text-white"
+        >Display Name</label
+      >
+      <input
+        formControlName="displayName"
+        type="text"
+        id="displayName"
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        required>
-      <div *ngIf="displayName?.invalid && (displayName?.dirty || displayName?.touched)" class="text-red-500">
-        <div *ngIf="displayName?.errors?.['required']">
-          Name is required.
-        </div>
+        required
+      />
+      <div
+        *ngIf="
+          displayName?.invalid && (displayName?.dirty || displayName?.touched)
+        "
+        class="text-red-500"
+      >
+        <div *ngIf="displayName?.errors?.['required']">Name is required.</div>
         <div *ngIf="displayName?.errors?.['minlength']">
           Name must be at least 2 characters long.
         </div>
@@ -19,45 +30,69 @@
       </div>
     </div>
     <div class="mb-6">
-      <label for="email" class="block mb-2 text-md font-medium text-gray-900 dark:text-white">Email address</label>
-      <input formControlName="email" type="email" id="email"
+      <label
+        for="email"
+        class="block mb-2 text-md font-medium text-gray-900 dark:text-white"
+        >Email address</label
+      >
+      <input
+        formControlName="email"
+        type="email"
+        id="email"
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        required>
-      <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="text-red-500">
-        <div *ngIf="email?.errors?.['required']">
-          Email is required.
-        </div>
-        <div *ngIf="email?.errors?.['email']">
-          Valid email is required.
-        </div>
+        required
+      />
+      <div
+        *ngIf="email?.invalid && (email?.dirty || email?.touched)"
+        class="text-red-500"
+      >
+        <div *ngIf="email?.errors?.['required']">Email is required.</div>
+        <div *ngIf="email?.errors?.['email']">Valid email is required.</div>
         <div *ngIf="email?.errors?.['emailAlreadyExists']">
           Email is already in use.
         </div>
       </div>
     </div>
     <div class="mb-6">
-      <label for="zip" class="block mb-2 text-md font-medium text-gray-900 dark:text-white">Zip Code</label>
-      <input formControlName="zip" type="text" id="zip"
+      <label
+        for="zip"
+        class="block mb-2 text-md font-medium text-gray-900 dark:text-white"
+        >Zip Code</label
+      >
+      <input
+        formControlName="zip"
+        type="text"
+        id="zip"
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        required>
-      <div *ngIf="zip?.invalid && (zip?.dirty || zip?.touched)" class="text-red-500">
-        <div *ngIf="zip?.errors?.['required']">
-          Zip is required.
-        </div>
-        <div *ngIf="zip?.errors?.['pattern']">
-          Valid zip code is required.
-        </div>
+        required
+      />
+      <div
+        *ngIf="zip?.invalid && (zip?.dirty || zip?.touched)"
+        class="text-red-500"
+      >
+        <div *ngIf="zip?.errors?.['required']">Zip is required.</div>
+        <div *ngIf="zip?.errors?.['pattern']">Valid zip code is required.</div>
       </div>
     </div>
     <div class="mb-6">
-      <label for="password" class="block mb-2 text-md font-medium text-gray-900 dark:text-white">Password</label>
-      <input formControlName="password" type="password" id="password"
+      <label
+        for="password"
+        class="block mb-2 text-md font-medium text-gray-900 dark:text-white"
+        >Password</label
+      >
+      <input
+        formControlName="password"
+        type="password"
+        id="password"
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        placeholder="•••••••••" required>
-      <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="text-red-500">
-        <div *ngIf="password?.errors?.['required']">
-          Password is required.
-        </div>
+        placeholder="•••••••••"
+        required
+      />
+      <div
+        *ngIf="password?.invalid && (password?.dirty || password?.touched)"
+        class="text-red-500"
+      >
+        <div *ngIf="password?.errors?.['required']">Password is required.</div>
         <div *ngIf="password?.errors?.['minlength']">
           Password must be at least 10 characters long.
         </div>
@@ -68,32 +103,63 @@
     </div>
     <div class="flex items-start mb-6">
       <div class="flex items-center h-5">
-        <input formControlName="allowSiteNotifications" id="site_notifications" type="checkbox" value=""
+        <input
+          formControlName="allowSiteNotifications"
+          id="site_notifications"
+          type="checkbox"
+          value=""
           class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
-          required>
+          required
+        />
       </div>
-      <label for="site_notifications" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Allow site
-        notifications</label>
+      <label
+        for="site_notifications"
+        class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+        >Allow site notifications</label
+      >
     </div>
     <div class="flex items-start mb-6">
       <div class="flex items-center h-5">
-        <input formControlName="allowEmailNotifications" id="email_notifications" type="checkbox" value=""
+        <input
+          formControlName="allowEmailNotifications"
+          id="email_notifications"
+          type="checkbox"
+          value=""
           class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
-          required>
+          required
+        />
       </div>
-      <label for="email_notifications" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Allow email
-        notifications</label>
+      <label
+        for="email_notifications"
+        class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+        >Allow email notifications</label
+      >
     </div>
     <div class="flex items-start mb-6">
       <div class="flex items-center h-5">
-        <input id="remember" type="checkbox" value=""
+        <input
+          id="remember"
+          type="checkbox"
+          value=""
           class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
-          required>
+          required
+        />
       </div>
-      <label for="remember" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">I agree with the <a
-          href="#" class="text-blue-600 hover:underline dark:text-blue-500">terms and conditions</a>.</label>
+      <label
+        for="remember"
+        class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+        >I agree with the
+        <a href="#" class="text-blue-600 hover:underline dark:text-blue-500"
+          >terms and conditions</a
+        >.</label
+      >
     </div>
-    <button type="submit" [disabled]="!userForm.valid"
-      class="text-white bg-emerald-800 hover:bg-emerald-900 focus:ring-4 focus:outline-none disabled:cursor-not-allowed focus:ring-blue-300 font-medium rounded-lg text-md w-full sm:w-auto px-5 py-2.5 text-center dark:bg-emerald-800 dark:hover:bg-emerald-900 dark:focus:ring-blue-800">Submit</button>
+    <button
+      type="submit"
+      [disabled]="!userForm.valid"
+      class="text-white bg-emerald-800 hover:bg-emerald-900 focus:ring-4 focus:outline-none disabled:cursor-not-allowed focus:ring-blue-300 font-medium rounded-lg text-md w-full sm:w-auto px-5 py-2.5 text-center dark:bg-emerald-800 dark:hover:bg-emerald-900 dark:focus:ring-blue-800"
+    >
+      Submit
+    </button>
   </form>
 </div>
