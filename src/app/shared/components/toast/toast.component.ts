@@ -5,7 +5,7 @@ import { Component, HostListener, OnInit, Renderer2 } from '@angular/core';
   styles: [
     `
       :host {
-        @apply w-full flex flex-col items-center w-full mb-20;
+        @apply w-full flex flex-col items-center w-full mb-10;
       }
     `,
   ],
