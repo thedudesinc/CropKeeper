@@ -35,6 +35,7 @@ export class GardenDesignerModalComponent implements OnChanges, OnInit {
   gardenPropertiesForm: FormGroup<ControlsOf<GardenPlotPartialInput>> =
     new FormGroup<ControlsOf<GardenPlotPartialInput>>({
       id: new FormControl(),
+      userId: new FormControl(),
       plotName: new FormControl('', {
         nonNullable: true,
         validators: [

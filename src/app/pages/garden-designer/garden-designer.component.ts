@@ -1,7 +1,8 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { fabric } from 'fabric';
-import { Observable, of, switchMap, tap } from 'rxjs';
+import { Observable, filter, of, switchMap, tap } from 'rxjs';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { FabricService } from 'src/app/services/fabric.service';
 import { GardenPlotService } from 'src/app/services/garden-plot.service';
 import { LoadingService } from 'src/app/services/loading.service';
@@ -24,7 +25,8 @@ export class GardenDesignerComponent implements OnInit {
     route: ActivatedRoute,
     private gardenPlotService: GardenPlotService,
     private loadingService: LoadingService,
-    private fabricService: FabricService
+    private fabricService: FabricService,
+    private authenticationService: AuthenticationService
   ) {
     this.gardenPlot$ = route.params.pipe(
       switchMap((params) => {
@@ -74,11 +76,17 @@ export class GardenDesignerComponent implements OnInit {
   onSaveEvent(formData: GardenPlotPartialInput): void {
     this.loadingService.changeLoadingVisible.next(true);
     if (!formData.id) {
-      this.gardenPlotService
-        .create({
-          ...formData,
-          fabricJson: JSON.stringify(this.fabricService._canvas?.toJSON()),
-        })
+      this.authenticationService.user$
+        .pipe(
+          filter((user) => !!user),
+          switchMap((user) =>
+            this.gardenPlotService.create({
+              ...formData,
+              userId: user!.id,
+              fabricJson: JSON.stringify(this.fabricService._canvas?.toJSON()),
+            })
+          )
+        )
         .subscribe((response) => {
           this.loadingService.changeLoadingVisible.next(false);
           this.isModalVisible = false;

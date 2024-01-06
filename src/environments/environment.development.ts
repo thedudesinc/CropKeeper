@@ -1,3 +1,3 @@
 export const environment = {
-  baseUrl: 'https://cropkeeper.azurewebsites.net/api'
+  baseUrl: 'https://localhost:7129/api',
 };

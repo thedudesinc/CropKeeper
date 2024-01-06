@@ -43,7 +43,11 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
   ngOnInit() {
     this.gardenPlotSubscription = this.headerService.gardenPlotListRefresh$
       .pipe(
-        switchMap(() => this.gardenPlotService.getAllGardenPlots()),
+        switchMap(() => this.user$),
+        filter((user) => !!user),
+        switchMap((user) =>
+          this.gardenPlotService.getGardenPlotsByUserId(user.id)
+        ),
         tap((gardenPlots) => (this.gardenPlotList = gardenPlots))
       )
       .subscribe();

@@ -1,6 +1,6 @@
 <div class="absolute left-1.5 top-1/2 -translate-y-1/2 inline-flex flex-col rounded-md shadow-sm" role="group">
   <button (click)="onToolButtonClick(toolTypeEnum.DRAW_LINE)" data-tooltip-target="tooltip-line" data-tooltip-placement="right" type="button"
-    class="basis-auto h-50 mb-2 md:mb-0 text-white bg-gray-800 hover:bg-blue-800 focus:outline-none font-medium text-sm px-5 py-2.5 text-center dark:bg-gray-800 dark:hover:bg-gray-600 border-gray-600 border-b">
+    class="basis-auto h-50 mb-2 md:mb-0 text-white bg-gray-800 hover:bg-blue-800 focus:outline-none font-medium text-sm px-5 py-2.5 text-center dark:bg-gray-800 dark:hover:bg-gray-600 dark:focus:bg-gray-600 border-gray-600 border-b">
     <fa-icon [icon]="faPencil" class="text-2xl"></fa-icon>
   </button>
   <div id="tooltip-line" role="tooltip"
@@ -10,7 +10,7 @@
   </div>
 
   <button (click)="onToolButtonClick(toolTypeEnum.DRAW_RECTANGLE)" data-tooltip-target="tooltip-square" data-tooltip-placement="right" type="button"
-    class="basis-auto mb-2 md:mb-0 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none font-medium text-sm px-5 py-2.5 text-center dark:bg-gray-800 dark:hover:bg-gray-600 border-gray-600 border-b">
+    class="basis-auto mb-2 md:mb-0 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none font-medium text-sm px-5 py-2.5 text-center dark:bg-gray-800 dark:hover:bg-gray-600 dark:focus:bg-gray-600 border-gray-600 border-b">
     <fa-icon [icon]="faSquare" class="text-2xl"></fa-icon>
   </button>
   <div id="tooltip-square" role="tooltip"
@@ -20,7 +20,7 @@
   </div>
 
   <button (click)="onToolButtonClick(toolTypeEnum.DRAW_ELLIPSE)" data-tooltip-target="tooltip-circle" data-tooltip-placement="right" type="button"
-    class="basis-auto mb-2 md:mb-0 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none font-medium text-sm px-5 py-2.5 text-center dark:bg-gray-800 dark:hover:bg-gray-600 border-gray-600 border-b">
+    class="basis-auto mb-2 md:mb-0 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none font-medium text-sm px-5 py-2.5 text-center dark:bg-gray-800 dark:hover:bg-gray-600 dark:focus:bg-gray-600 border-gray-600 border-b">
     <fa-icon [icon]="faCircle" class="text-2xl"></fa-icon>
   </button>
   <div id="tooltip-circle" role="tooltip"
@@ -30,7 +30,7 @@
   </div>
 
   <button (click)="onEraseButtonClick()" data-tooltip-target="tooltip-eraser" data-tooltip-placement="right" type="button"
-    class="basis-auto mb-2 md:mb-0 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none font-medium text-sm px-5 py-2.5 text-center dark:bg-gray-800 dark:hover:bg-gray-600 border-gray-600 border-b">
+    class="basis-auto mb-2 md:mb-0 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none font-medium text-sm px-5 py-2.5 text-center dark:bg-gray-800 dark:hover:bg-gray-600 dark:focus:bg-gray-600 border-gray-600 border-b">
     <fa-icon [icon]="faEraser" class="text-2xl"></fa-icon>
   </button>
   <div id="tooltip-eraser" role="tooltip"
@@ -40,7 +40,7 @@
   </div>
 
   <button data-tooltip-target="tooltip-row" data-tooltip-placement="right" type="button"
-    class="basis-auto mb-2 md:mb-0 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none font-medium text-sm px-5 py-2.5 text-center dark:bg-gray-800 dark:hover:bg-gray-600 border-gray-600 border-b">
+    class="basis-auto mb-2 md:mb-0 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none font-medium text-sm px-5 py-2.5 text-center dark:bg-gray-800 dark:hover:bg-gray-600 dark:focus:bg-gray-600 border-gray-600 border-b">
     <fa-icon [icon]="faSeedling" class="text-xs"></fa-icon>
     <fa-icon [icon]="faSeedling" class="text-xs"></fa-icon>
     <fa-icon [icon]="faSeedling" class="text-xs"></fa-icon>
@@ -52,7 +52,7 @@
   </div>
 
   <button data-tooltip-target="tooltip-single" data-tooltip-placement="right" type="button"
-    class="basis-auto mb-2 md:mb-0 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none font-medium text-sm px-5 py-2.5 text-center dark:bg-gray-800 dark:hover:bg-gray-600 border-gray-600 border-b">
+    class="basis-auto mb-2 md:mb-0 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none font-medium text-sm px-5 py-2.5 text-center dark:bg-gray-800 dark:hover:bg-gray-600 dark:focus:bg-gray-600 border-gray-600 border-b">
     <fa-icon [icon]="faSeedling" class="text-2xl"></fa-icon>
   </button>
   <div id="tooltip-single" role="tooltip"
@@ -62,7 +62,7 @@
   </div>
 
   <button data-tooltip-target="tooltip-texture" data-tooltip-placement="right" type="button"
-    class="basis-auto mb-2 md:mb-0 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none font-medium text-sm px-5 py-2.5 text-center dark:bg-gray-800 dark:hover:bg-gray-600">
+    class="basis-auto mb-2 md:mb-0 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none font-medium text-sm px-5 py-2.5 text-center dark:bg-gray-800 dark:hover:bg-gray-600 dark:focus:bg-gray-600">
     <fa-icon [icon]="faBrush" class="text-2xl"></fa-icon>
   </button>
   <div id="tooltip-texture" role="tooltip"

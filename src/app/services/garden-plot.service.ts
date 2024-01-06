@@ -23,6 +23,12 @@ export class GardenPlotService {
     return this.http.get<GardenPlotOutput[]>(this.baseUrl);
   }
 
+  getGardenPlotsByUserId(userId: string): Observable<GardenPlotOutput[]> {
+    return this.http.get<GardenPlotOutput[]>(
+      this.baseUrl + '/getByUserId/' + userId
+    );
+  }
+
   create(gardenPlot: GardenPlotPartialInput): Observable<GardenPlotOutput> {
     return this.http.post<GardenPlotOutput>(this.baseUrl, gardenPlot);
   }
