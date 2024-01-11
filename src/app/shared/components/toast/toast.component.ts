@@ -6,6 +6,8 @@ import { Component, HostListener, OnInit, Renderer2 } from '@angular/core';
     `
       :host {
         @apply w-full flex flex-col items-center w-full mb-10;
+        position: fixed;
+        z-index: 1;
       }
     `,
   ],

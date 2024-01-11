@@ -1,0 +1,101 @@
+<div
+  [ngClass]="!isVisible ? 'hide' : ''"
+  class="absolute right-1.5 top-1.5 transition-transform flex items-start"
+>
+  <button
+    (click)="onToggle()"
+    data-tooltip-target="tooltip-default"
+    id="collapseButton"
+    type="button"
+    class="flex p-2 shadow-2xl text-gray-900 hover:bg-gray-900 hover:text-white focus:outline-none dark:bg-gray-800 dark:text-white dark:hover:text-white dark:hover:bg-gray-700"
+  >
+    <fa-icon
+      [icon]="faAnglesRight"
+      [rotate]="!isVisible ? 180 : undefined"
+      class="text-2xl"
+    ></fa-icon>
+  </button>
+
+  <div class="w-80 flex flex-col shadow-2xl dark:bg-gray-800" role="group">
+    <div class="p-3">
+      <form class="flex flex-row w-full">
+        <div
+          id="tooltip-default"
+          role="tooltip"
+          class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+        >
+          Collapse Crop Panel
+          <div class="tooltip-arrow" data-popper-arrow></div>
+        </div>
+        <input
+          type="search"
+          id="default-search"
+          class="w-full p-1 text-base text-gray-900 border border-gray-300 bg-gray-50 focus:ring-gray-600 focus:border-gray-400 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-600 dark:focus:border-gray-400"
+          placeholder="Search Crops..."
+          required
+        />
+      </form>
+    </div>
+
+    <div class="relative overflow-auto shadow-md p-3" style="max-height: 50vh">
+      <table
+        class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+      >
+        <thead
+          class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+        >
+          <tr>
+            <th scope="col" class="px-3 py-1">Crop Name</th>
+            <th scope="col" class="px-3 py-1">Category</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+          >
+            <th
+              scope="row"
+              class="px-3 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+            >
+              Placeholder Crop
+            </th>
+            <td class="px-3 py-2">Placeholder Category</td>
+          </tr>
+          <tr
+            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+          >
+            <th
+              scope="row"
+              class="px-3 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+            >
+              Placeholder Crop
+            </th>
+            <td class="px-3 py-2">Placeholder Category</td>
+          </tr>
+          <tr
+            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+          >
+            <th
+              scope="row"
+              class="px-3 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+            >
+              Placeholder Crop
+            </th>
+            <td class="px-3 py-2">Placeholder Category</td>
+          </tr>
+          <tr
+            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+          >
+            <th
+              scope="row"
+              class="px-3 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+            >
+              Placeholder Crop
+            </th>
+            <td class="px-3 py-2">Placeholder Category</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

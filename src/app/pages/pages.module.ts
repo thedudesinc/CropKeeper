@@ -13,6 +13,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LetModule } from '@ngrx/component';
 import { ProfileComponent } from './profile/profile.component';
 import { SharedModule } from '../shared/shared.module';
+import { GardenDesignerFooterComponent } from './garden-designer/components/garden-designer-footer/garden-designer-footer.component';
+import { GardenDesignerSidebarComponent } from './garden-designer/components/garden-designer-sidebar/garden-designer-sidebar.component';
 
 const routes: Routes = [
   {
@@ -37,6 +39,8 @@ const routes: Routes = [
     GardenDesignerTitlebarComponent,
     GardenDesignerModalComponent,
     ProfileComponent,
+    GardenDesignerFooterComponent,
+    GardenDesignerSidebarComponent,
   ],
   imports: [
     CommonModule,

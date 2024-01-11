@@ -1,11 +1,35 @@
-<div class="relative w-full z-20">
+<div class="relative w-full z-20 overflow-x-hidden">
+  <canvas
+    id="fabricSurface"
+    class="absolute"
+    style="border: 1px solid #cccccc"
+    width="100px"
+    height="100px"
+  ></canvas>
+  <app-garden-designer-titlebar
+    [title]="gardenPlot?.plotName"
+    [gardenPlotId]="gardenPlot?.id"
+    (titleClickEventEmitter)="openModal()"
+  ></app-garden-designer-titlebar>
 
-  <canvas id="fabricSurface" class="absolute" style="border: 1px solid #cccccc;" width="100px" height="100px"></canvas>
-  <app-garden-designer-titlebar [title]="gardenPlot?.plotName" [gardenPlotId]="gardenPlot?.id"
-  (titleClickEventEmitter)="openModal()"></app-garden-designer-titlebar>
+  <app-garden-designer-toolbar
+    (openCropPanelEvent)="showSidebar()"
+    (activeToolEvent)="onActiveToolEvent($event)"
+  ></app-garden-designer-toolbar>
 
-  <app-garden-designer-toolbar></app-garden-designer-toolbar>
+  <app-garden-designer-modal
+    [isVisible]="isModalVisible"
+    [gardenPlot]="gardenPlot"
+    (saveEventEmitter)="onSaveEvent($event)"
+    (closeEventEmitter)="closeModal()"
+  ></app-garden-designer-modal>
 
-  <app-garden-designer-modal [isVisible]="isModalVisible" [gardenPlot]="gardenPlot"
-  (saveEventEmitter)="onSaveEvent($event)" (closeEventEmitter)="closeModal()"></app-garden-designer-modal>
+  <app-garden-designer-footer
+    [activeTool]="activeTool"
+  ></app-garden-designer-footer>
+
+  <app-garden-designer-sidebar
+    [isVisible]="isSidebarVisible"
+    (toggleEventEmitter)="toggleSidebar()"
+  ></app-garden-designer-sidebar>
 </div>

@@ -1,0 +1,29 @@
+<div
+  class="fixed bottom-0 w-full flex items-center justify-between z-50 bg-white dark:bg-gray-800 dark:text-white"
+>
+  <div [ngSwitch]="activeTool" class="pl-5 my-auto text-left" id="prompt">
+    <span *ngSwitchDefault
+      >Select a tool, hold right click to pan, scroll to zoom</span
+    >
+    <span *ngSwitchCase="toolType.NONE"
+      >Select a tool, hold right click to pan, scroll to zoom</span
+    >
+    <span *ngSwitchCase="toolType.DRAW_LINE">
+      Click and drag to draw a line
+    </span>
+    <span *ngSwitchCase="toolType.DRAW_RECTANGLE">
+      Click and drag to create a rectangle
+    </span>
+    <span *ngSwitchCase="toolType.DRAW_ELLIPSE">
+      Click and drag to create an circle
+    </span>
+  </div>
+  <div class="h-12 flex items-center justify-end flex-grow-1 ml-auto pr-5">
+    <form class="block my-2">
+      <label id="measurments-box-label" for="measurments-box">
+        Measurements
+      </label>
+      <input class="h-8 ml-2" type="text" id="measurments-box" value readonly />
+    </form>
+  </div>
+</div>

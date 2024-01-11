@@ -10,6 +10,7 @@ import {
   GardenPlotOutput,
   GardenPlotPartialInput,
 } from 'src/app/services/models/garden-plot.model';
+import { ToolType } from './enums/tool-type.enum';
 
 @Component({
   selector: 'app-garden-designer',
@@ -18,6 +19,8 @@ import {
 })
 export class GardenDesignerComponent implements OnInit {
   isModalVisible = false;
+  isSidebarVisible = true;
+  activeTool = ToolType.NONE;
   gardenPlot$: Observable<GardenPlotOutput>;
   gardenPlot?: GardenPlotOutput;
 
@@ -45,24 +48,18 @@ export class GardenDesignerComponent implements OnInit {
       tap((gardenPlot) => {
         this.fabricService._canvas?.dispose();
         if (gardenPlot && gardenPlot.fabricJson) {
-          this.fabricService._canvas = new fabric.Canvas(
-            'fabricSurface'
-          ).loadFromJSON(gardenPlot.fabricJson, () => {
-            console.log('toast');
-          });
+          this.fabricService._canvas = new fabric.Canvas('fabricSurface', {
+            fireRightClick: true,
+            stopContextMenu: true,
+          }).loadFromJSON(gardenPlot.fabricJson, () => {});
         } else {
           this.fabricService._canvas = new fabric.Canvas('fabricSurface', {
             backgroundColor: '#ebebef',
+            fireRightClick: true,
+            stopContextMenu: true,
           });
-
-          window.addEventListener(
-            'resize',
-            () => {
-              this.fabricService.resizeCanvas();
-            },
-            false
-          );
         }
+        this.fabricService.initialize();
         this.gardenPlot = gardenPlot;
         this.fabricService.resizeCanvas();
       })
@@ -112,5 +109,19 @@ export class GardenDesignerComponent implements OnInit {
 
   closeModal(): void {
     this.isModalVisible = false;
+    console.log(this.isModalVisible);
+  }
+
+  toggleSidebar(): void {
+    this.isSidebarVisible = !this.isSidebarVisible;
+    console.log(this.isSidebarVisible);
+  }
+
+  showSidebar(): void {
+    this.isSidebarVisible = true;
+  }
+
+  onActiveToolEvent(activeTool: ToolType): void {
+    this.activeTool = activeTool;
   }
 }

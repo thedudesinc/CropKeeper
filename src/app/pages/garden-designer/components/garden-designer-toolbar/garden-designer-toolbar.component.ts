@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, EventEmitter, HostListener, Output } from '@angular/core';
 import { faCircle, faSquare } from '@fortawesome/free-regular-svg-icons';
 import {
   faBrush,
@@ -8,13 +8,7 @@ import {
   faSeedling,
 } from '@fortawesome/free-solid-svg-icons';
 import { FabricService } from 'src/app/services/fabric.service';
-
-export enum ToolType {
-  NONE = '',
-  DRAW_LINE = 'drawLine',
-  DRAW_RECTANGLE = 'drawRectangle',
-  DRAW_ELLIPSE = 'drawEllipse',
-}
+import { ToolType } from '../../enums/tool-type.enum';
 
 @Component({
   selector: 'app-garden-designer-toolbar',
@@ -40,6 +34,12 @@ export class GardenDesignerToolbarComponent {
     }
   }
 
+  @Output()
+  openCropPanelEvent: EventEmitter<void> = new EventEmitter();
+
+  @Output()
+  activeToolEvent: EventEmitter<ToolType> = new EventEmitter();
+
   faPencil = faPencil;
   faEraser = faEraser;
   faSquare = faSquare;
@@ -51,11 +51,16 @@ export class GardenDesignerToolbarComponent {
   toolTypeEnum = ToolType;
   toolFunctionMap: {
     [id: string]: {
-      mouseUp: (event: fabric.IEvent<MouseEvent | Event>) => void;
-      mouseDown: (event: fabric.IEvent<MouseEvent | Event>) => void;
-      mouseMove: (event: fabric.IEvent<MouseEvent | Event>) => void;
+      mouseUp: (event: fabric.IEvent<MouseEvent>) => void;
+      mouseDown: (event: fabric.IEvent<MouseEvent>) => void;
+      mouseMove: (event: fabric.IEvent<MouseEvent>) => void;
     };
   } = {
+    none: {
+      mouseUp: this.fabricService.panMouseUp,
+      mouseDown: this.fabricService.panMouseDown,
+      mouseMove: this.fabricService.panMouseMove,
+    },
     drawLine: {
       mouseUp: this.fabricService.drawLineMouseUp,
       mouseDown: this.fabricService.drawLineMouseDown,
@@ -104,10 +109,20 @@ export class GardenDesignerToolbarComponent {
     } else {
       this.activeTool = toolName;
     }
+    console.log(this.activeTool);
+    this.activeToolEvent.emit(this.activeTool);
     this.handleMouseEvent();
   }
 
   onEraseButtonClick() {
     this.fabricService.deleteSelection();
+  }
+
+  onCropClick() {
+    this.openCropPanelEvent.emit();
+  }
+
+  onRowCropClick() {
+    this.openCropPanelEvent.emit();
   }
 }
