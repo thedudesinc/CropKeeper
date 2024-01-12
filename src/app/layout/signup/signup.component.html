@@ -1,6 +1,11 @@
 <div class="max-w-screen-sm w-full mx-auto px-10">
   <h1 class="text-5xl font-extrabold dark:text-white py-20">Sign Up</h1>
   <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="pb-10">
+    <img
+      class="mx-auto my-5 rounded-3xl w-36 h-36"
+      [src]="displayImageUrl?.value | safe : 'url'"
+      alt="Enter url to fetch image"
+    />
     <div class="mb-6">
       <label
         for="displayName"
@@ -28,6 +33,19 @@
           Name must be less than 50 characters long.
         </div>
       </div>
+    </div>
+    <div class="mb-6">
+      <label
+        for="displayImageUrl"
+        class="block mb-2 text-base font-medium text-gray-900 dark:text-white"
+        >Display Image Url</label
+      >
+      <input
+        formControlName="displayImageUrl"
+        type="text"
+        id="displayImageUrl"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      />
     </div>
     <div class="mb-6">
       <label
@@ -109,7 +127,6 @@
           type="checkbox"
           value=""
           class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
-          required
         />
       </div>
       <label
@@ -126,7 +143,6 @@
           type="checkbox"
           value=""
           class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
-          required
         />
       </div>
       <label
@@ -135,25 +151,24 @@
         >Allow email notifications</label
       >
     </div>
-    <div class="flex items-start mb-6">
+    <!--<div class="flex items-start mb-6">
       <div class="flex items-center h-5">
         <input
-          id="remember"
+        id="terms_agreement"
           type="checkbox"
           value=""
           class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
-          required
-        />
-      </div>
-      <label
-        for="remember"
+          />
+        </div>
+        <label
+        for="terms_agreement"
         class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
         >I agree with the
         <a href="#" class="text-blue-600 hover:underline dark:text-blue-500"
-          >terms and conditions</a
+        >terms and conditions</a
         >.</label
-      >
-    </div>
+        >
+      </div> -->
     <button
       type="submit"
       [disabled]="!userForm.valid"
@@ -163,3 +178,4 @@
     </button>
   </form>
 </div>
+<app-toast></app-toast>

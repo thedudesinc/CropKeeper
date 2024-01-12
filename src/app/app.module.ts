@@ -10,6 +10,8 @@ import { LoadingComponent } from './layout/loading/loading.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { GlobalInterceptor } from './shared/interceptors/global.interceptor';
 import { ToastComponent } from './shared/components/toast/toast.component';
+import { SharedModule } from './shared/shared.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,16 +21,18 @@ import { ToastComponent } from './shared/components/toast/toast.component';
     LoadingComponent,
     ToastComponent,
   ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: GlobalInterceptor, multi: true },
+  ],
+  bootstrap: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
     FontAwesomeModule,
+    SharedModule,
+    FormsModule,
   ],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: GlobalInterceptor, multi: true },
-  ],
-  bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, Renderer2 } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-toast',
@@ -34,9 +34,9 @@ import { Component, HostListener, OnInit, Renderer2 } from '@angular/core';
         <span class="sr-only">Warning icon</span>
       </div>
       <div class="ms-3 text-sm font-normal">
-        For cost savings, the azure services running this application may be
-        dormant. You may experience a failed request or two while they start up.
-        Please be patient!
+        Please wait patiently while the Azure services start up! For cost
+        savings, the Azure services running this application may be dormant. You
+        may experience a delay for all backend services.
       </div>
       <button
         type="button"

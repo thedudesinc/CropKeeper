@@ -26,7 +26,6 @@ export class SignupComponent {
     id: new FormControl('', {
       nonNullable: false,
     }),
-    // add to html of sign-up page
     displayImageUrl: new FormControl('', {
       nonNullable: true,
     }),
